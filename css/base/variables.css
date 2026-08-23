@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSS BASE: DESIGN TOKENS & VARIÁVEIS (:ROOT)
+   CSS BASE: DESIGN TOKENS & VARIÁVEIS (:ROOT & LIGHT THEME)
    Paleta: Marsala, Rosé Gold e Dourado Imperial
    ========================================================================== */
 
@@ -22,7 +22,7 @@
     --gold-dark: #9a7617;
     --gold-glow: rgba(212, 175, 55, 0.28);
 
-    /* Cores de Texto e Contrastes */
+    /* Cores de Texto e Contrastes Dark */
     --text-primary: #fdf8f8;
     --text-secondary: #c5a9b2;
     --text-muted: #8e6d77;
@@ -54,4 +54,48 @@
     --container-max-width: 1240px;
     --border-radius-card: 1.75rem;
     --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   TEMA CLARO (LIGHT MODE): ALABASTER ROSÉ & MARSALA NOBRE
+   ========================================================================== */
+[data-theme="light"] {
+    --bg-primary: #fbf5f6;
+    --bg-secondary: #f4eaec;
+    --bg-tertiary: #ede0e3;
+    
+    --marsala-primary: #8b263e;
+    --marsala-light: #ab3a53;
+    --marsala-dark: #581827;
+    
+    --rose-gold: #a65863;
+    --rose-gold-light: #c88691;
+    --rose-gold-glow: rgba(166, 88, 99, 0.20);
+    
+    --gold-primary: #b8860b;
+    --gold-light: #9a7617;
+    --gold-dark: #6e4e04;
+    --gold-glow: rgba(184, 134, 11, 0.25);
+
+    /* Cores de Texto e Contrastes Light */
+    --text-primary: #250912;
+    --text-secondary: #5e3240;
+    --text-muted: #8b5a69;
+    
+    /* Superfícies de Vidro Claras */
+    --surface-glass: rgba(255, 245, 247, 0.82);
+    --surface-glass-header: rgba(255, 248, 250, 0.90);
+    --surface-glass-card: rgba(255, 248, 250, 0.92);
+    --border-glass: rgba(166, 88, 99, 0.18);
+    --border-glass-hover: rgba(184, 134, 11, 0.45);
+    
+    /* Gradientes Assinatura Light */
+    --gradient-text-rose: linear-gradient(135deg, #581827 0%, #8b263e 50%, #c88691 100%);
+    --gradient-text-gold: linear-gradient(135deg, #b8860b 0%, #9a7617 50%, #6e4e04 100%);
+    --gradient-accent: linear-gradient(135deg, #8b263e 0%, #c88691 50%, #b8860b 100%);
+    --gradient-gold-btn: linear-gradient(135deg, #f3df95 0%, #d4af37 50%, #b8860b 100%);
+    --gradient-timeline-line: linear-gradient(to bottom, var(--gold-primary), var(--rose-gold), var(--marsala-primary));
+
+    /* Sombras Light */
+    --shadow-card: 0 15px 40px rgba(122, 35, 55, 0.08);
 }

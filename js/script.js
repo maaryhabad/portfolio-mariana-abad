@@ -5,6 +5,7 @@
  * ==============================================================================
  */
 
+import { ThemeModule } from './modules/theme.js';
 import { HeaderModule } from './modules/header.js';
 import { PortfolioTabsModule } from './modules/portfolio-tabs.js';
 import { GitHubModule } from './modules/github.js';
@@ -18,17 +19,20 @@ import { RevealModule } from './modules/reveal.js';
 
 // Inicializa os módulos após o carregamento do DOM
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Efeitos Visuais & Animações Interativas
+    // 1. Gerenciamento de Tema (Dark / Light)
+    ThemeModule.init();
+
+    // 2. Efeitos Visuais & Animações Interativas
     ParticlesModule.init();
     SpotlightModule.init();
     RevealModule.init();
 
-    // 2. Componentes de Interface, Navegação & Modais
+    // 3. Componentes de Interface, Navegação & Modais
     HeaderModule.init();
     PortfolioTabsModule.init();
     ModalModule.init();
 
-    // 3. Integrações de Dados & Formulários
+    // 4. Integrações de Dados & Formulários
     GitHubModule.init();
     MediumModule.init();
     ItchIoModule.init();
