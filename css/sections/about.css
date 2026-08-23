@@ -1,7 +1,149 @@
 /* ==========================================================================
-   SEÇÃO: SOBRE MIM (ESTRUTURA EM GRID, PERFIL, HOBBIES E ASIDE)
+   SEÇÃO: HERO & SOBRE MIM (ESTRUTURA SCROLLYTELLING & BENTO DO MODELO.HTML)
    ========================================================================== */
 
+/* 1. HERO SECTION (100VH IMPACTANTE) */
+.hero-section {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 4rem 1.5rem 6rem;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+}
+
+.hero-content {
+    max-width: 860px;
+    z-index: 10;
+}
+
+.hero-badge-row {
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 1.75rem;
+}
+
+.hero-lead-text {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    max-width: 720px;
+}
+
+.hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.hero-scroll-hint {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-scroll-down {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    color: var(--rose-gold);
+    animation: bounceDown 2s infinite;
+    opacity: 0.75;
+}
+
+@keyframes bounceDown {
+    0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+    40% { transform: translate(-50%, -10px); }
+    60% { transform: translate(-50%, -5px); }
+}
+
+/* 2. DESTAQUES ESTRATÉGICOS (STORY STEPS EM BENTO CARDS) */
+.story-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-bottom: 4.5rem;
+}
+
+.story-step-card {
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+    gap: 1.25rem;
+}
+
+.step-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.step-card-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+.step-card-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.step-stat-pill {
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    background: rgba(15, 5, 8, 0.65);
+    border: 1px solid var(--border-glass);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.step-stat-number {
+    font-size: 1.45rem;
+    font-weight: 900;
+    font-family: var(--font-mono);
+    color: var(--gold-light);
+}
+
+.step-stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* 3. GRID BIOGRÁFICA E HOBBIES */
 .about-grid {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
@@ -9,7 +151,6 @@
     align-items: start;
 }
 
-/* Cartão Principal */
 .about-main-card {
     padding: 2.75rem 2.5rem;
     display: flex;
@@ -23,7 +164,6 @@
     gap: 2rem;
 }
 
-/* Figura Semântica e Avatar */
 .profile-figure {
     display: flex;
     flex-direction: column;
@@ -33,12 +173,12 @@
 }
 
 .avatar-glow-ring {
-    width: 105px;
-    height: 105px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     padding: 3px;
     background: linear-gradient(135deg, var(--gold-light), var(--rose-gold), var(--marsala-primary));
-    box-shadow: 0 0 25px var(--gold-glow);
+    box-shadow: 0 0 30px var(--gold-glow);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,8 +186,8 @@
 }
 
 .avatar-glow-ring:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 35px var(--gold-primary);
+    transform: scale(1.06);
+    box-shadow: 0 0 45px var(--gold-primary);
 }
 
 .avatar-inner-symbol {
@@ -58,12 +198,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 900;
     color: var(--gold-light);
     letter-spacing: -0.05em;
     font-family: var(--font-main);
-    border: 2px solid rgba(243, 223, 149, 0.3);
+    border: 2px solid rgba(243, 223, 149, 0.35);
 }
 
 .profile-figcaption {
@@ -74,9 +214,9 @@
 }
 
 .profile-full-name {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .profile-role-tag {
@@ -86,7 +226,6 @@
     letter-spacing: 0.02em;
 }
 
-/* Título e Texto */
 .about-title-block {
     display: flex;
     flex-direction: column;
@@ -128,7 +267,6 @@
     font-style: italic;
 }
 
-/* Grid de Métricas Bento */
 .about-metrics-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -168,7 +306,6 @@
     letter-spacing: 0.04em;
 }
 
-/* Linha de Ação e Localização */
 .about-actions-row {
     display: flex;
     align-items: center;
@@ -282,8 +419,12 @@
     line-height: 1.5;
 }
 
-/* Responsividade da Seção Sobre Mim */
+/* Responsividade da Seção */
 @media (max-width: 1024px) {
+    .story-steps-grid {
+        grid-template-columns: 1fr;
+    }
+
     .about-grid {
         grid-template-columns: 1fr;
     }
@@ -294,6 +435,11 @@
 }
 
 @media (max-width: 768px) {
+    .hero-section {
+        min-height: auto;
+        padding-top: 2rem;
+    }
+
     .about-header-flex {
         flex-direction: column;
         text-align: center;
@@ -302,10 +448,6 @@
 
     .about-main-card {
         padding: 1.75rem 1.25rem;
-    }
-
-    .about-metrics-grid {
-        grid-template-columns: 1fr 1fr;
     }
 
     .about-actions-row {

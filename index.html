@@ -30,7 +30,7 @@
         <div class="header-container">
             
             <!-- Identidade Visual / Logotipo -->
-            <a href="#sobre-mim" class="brand-logo" aria-label="Ir para o topo - Mariana Abad">
+            <a href="#inicio" class="brand-logo" aria-label="Ir para o início - Mariana Abad">
                 <div class="brand-icon" aria-hidden="true">MA</div>
                 <div class="brand-text-wrapper">
                     <span class="brand-name">Mariana <span class="highlight">Abad</span></span>
@@ -51,7 +51,7 @@
             <!-- Ações do Cabeçalho e Indicador de Status -->
             <div class="header-actions">
                 <div class="status-badge" title="Status Profissional">
-                    <span class="status-dot-pulse" aria-hidden="true"></span>
+                    <span class="status-dot" aria-hidden="true"></span>
                     <span>DISPONÍVEL</span>
                 </div>
                 
@@ -64,22 +64,131 @@
         </div>
     </header>
 
-    <!-- Conteúdo Principal - Single Page com 4 Seções Semânticas -->
-    <main class="main-content" id="mainContent">
+    <!-- Camada de Conteúdo Principal -->
+    <main class="content-layer main-content" id="mainContent">
 
         <!-- ====================================================================
-             SEÇÃO 1: SOBRE MIM (APRESENTAÇÃO, BIOGRAFIA, HOBBIES E CURRÍCULO)
+             1. HERO SECTION (100VH - ESTILO MODELO.HTML)
+             ==================================================================== -->
+        <section class="hero-section" id="inicio">
+            <div class="hero-content">
+                
+                <div class="hero-badge-row">
+                    <div class="glass-pill">
+                        <span class="status-dot"></span>
+                        <span>PORTFÓLIO & CURRÍCULO ONLINE • 2026</span>
+                    </div>
+                </div>
+
+                <h1 class="huge-title text-gradient hero-title">
+                    Mariana Abad.
+                </h1>
+
+                <h2 class="hero-subtitle">
+                    Produto. Engenharia. <span class="text-gradient-gold">Impacto.</span>
+                </h2>
+
+                <p class="hero-lead-text">
+                    Senior Product Owner no <strong>Instituto de Pesquisas Eldorado</strong> (projeto <em>TIC em trilhas / MCTI</em>) e Engenheira de Software formada pela <strong>Apple Developer Academy</strong>. Unindo visão estratégica de produto à excelência técnica full-stack, mobile e games.
+                </p>
+
+                <div class="hero-cta-row">
+                    <a href="#sobre-mim" class="btn-apple">
+                        <span>Conhecer Trajetória</span>
+                        <span aria-hidden="true">↓</span>
+                    </a>
+                    <a href="assets/curriculo.pdf" download="Curriculo-Mariana-Abad.pdf" class="btn-glass-secondary">
+                        <span>📄 Baixar Currículo</span>
+                    </a>
+                    <span class="hero-scroll-hint">Role para explorar</span>
+                </div>
+
+            </div>
+
+            <div class="hero-scroll-down" aria-hidden="true">
+                <span>↓</span>
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             SEÇÃO 1: SOBRE MIM (STORY STEPS + APRESENTAÇÃO, BIOGRAFIA E HOBBIES)
              ==================================================================== -->
         <section id="sobre-mim" class="section-container">
             
             <!-- Badge de Topo da Seção -->
             <div class="section-badge-wrapper">
-                <span class="glass-pill-badge">
-                    <span class="status-dot-gold" aria-hidden="true"></span>
-                    <span>SOBRE MIM • PERFIL & TRAJETÓRIA</span>
+                <span class="glass-pill">
+                    <span class="status-dot"></span>
+                    <span>PILHARES DE ATUAÇÃO ESTRATÉGICA</span>
                 </span>
             </div>
 
+            <!-- 3 Destaques em Bento Cards (Story Steps de Alto Impacto do modelo.html) -->
+            <div class="story-steps-grid">
+                
+                <!-- Step 1: Produto & Negócio -->
+                <article class="bento-card story-step-card">
+                    <div>
+                        <div class="step-card-header">
+                            <span>INICIATIVA 01</span>
+                            <span class="glass-pill" style="padding: 0.2rem 0.65rem; font-size: 0.65rem;">LIDERANÇA</span>
+                        </div>
+                        <h3 class="step-card-title" style="margin-top: 0.85rem;">
+                            Gestão de Produto & <span class="text-gradient-gold">Escala</span>
+                        </h3>
+                        <p class="step-card-desc" style="margin-top: 0.65rem;">
+                            Atuação no Instituto Eldorado no projeto <em>TIC em trilhas</em> (MCTI). Liderança em priorização de valor, facilitação ágil e orientação de <strong>+100 startups</strong> aceleradas na 9weeklabs.
+                        </p>
+                    </div>
+                    <div class="step-stat-pill">
+                        <span class="step-stat-number">+100</span>
+                        <span class="step-stat-label">Startups Mentoradas</span>
+                    </div>
+                </article>
+
+                <!-- Step 2: Engenharia Apple & Web -->
+                <article class="bento-card story-step-card">
+                    <div>
+                        <div class="step-card-header">
+                            <span>INICIATIVA 02</span>
+                            <span class="glass-pill" style="padding: 0.2rem 0.65rem; font-size: 0.65rem;">ENGENHARIA</span>
+                        </div>
+                        <h3 class="step-card-title" style="margin-top: 0.85rem;">
+                            Mobile iOS & <span class="text-gradient-rose">Full-Stack</span>
+                        </h3>
+                        <p class="step-card-desc" style="margin-top: 0.65rem;">
+                            Formação internacional na <strong>Apple Developer Academy</strong> (Swift/SwiftUI). Domínio prático de JavaScript, SQL, Angular, NestJS, IA e Canvas LMS em sistemas de alto tráfego.
+                        </p>
+                    </div>
+                    <div class="step-stat-pill">
+                        <span class="step-stat-number"> ADA</span>
+                        <span class="step-stat-label">Apple Academy & Teacher</span>
+                    </div>
+                </article>
+
+                <!-- Step 3: Games, Docência & Música -->
+                <article class="bento-card story-step-card">
+                    <div>
+                        <div class="step-card-header">
+                            <span>INICIATIVA 03</span>
+                            <span class="glass-pill" style="padding: 0.2rem 0.65rem; font-size: 0.65rem;">CRIATIVIDADE</span>
+                        </div>
+                        <h3 class="step-card-title" style="margin-top: 0.85rem;">
+                            Games, Som & <span class="text-gradient-marsala">Educação</span>
+                        </h3>
+                        <p class="step-card-desc" style="margin-top: 0.65rem;">
+                            12 participações na <strong>Global Game Jam</strong> (10x organização), bolsa internacional na <em>GDC 2019</em> em San Francisco, Licenciatura e Pós em Música com foco em síntese e acústica.
+                        </p>
+                    </div>
+                    <div class="step-stat-pill">
+                        <span class="step-stat-number">12x</span>
+                        <span class="step-stat-label">Global Game Jams</span>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Grade Biográfica e Hobbies -->
             <div class="about-grid">
                 
                 <!-- Cartão Principal de Apresentação e Biografia -->
@@ -99,11 +208,11 @@
 
                         <!-- Título e Introdução de Impacto -->
                         <div class="about-title-block">
-                            <h1 class="about-hero-title">
-                                Olá! Sou a <span class="gradient-text-gold">Mariana</span>.
-                            </h1>
+                            <h2 class="about-hero-title">
+                                Olá! Sou a <span class="text-gradient-gold">Mariana</span>.
+                            </h2>
                             <p class="about-lead-text">
-                                Mãe da Isa, do Thor e do Simba. Apaixonada por games, música e engenharia de software, unindo pensamento analítico de produto à excelência técnica de ponta a ponta.
+                                Mãe da Isa, do Thor e do Simba. Apaixonada por games, música e tecnologia, unindo pensamento analítico de produto à excelência técnica de ponta a ponta.
                             </p>
                         </div>
 
@@ -125,28 +234,28 @@
                     <!-- Métricas de Impacto em Mini-Cards Bento -->
                     <div class="about-metrics-grid">
                         <div class="metric-card">
-                            <span class="metric-number gradient-text-gold">12x</span>
+                            <span class="metric-number text-gradient-gold">12x</span>
                             <span class="metric-label">Global Game Jam (10x Org)</span>
                         </div>
                         <div class="metric-card">
-                            <span class="metric-number gradient-text-rose">+100</span>
+                            <span class="metric-number text-gradient-rose">+100</span>
                             <span class="metric-label">Startups Mentoradas</span>
                         </div>
                         <div class="metric-card">
-                            <span class="metric-number gradient-text-gold"></span>
+                            <span class="metric-number text-gradient-gold"></span>
                             <span class="metric-label">Apple Teacher & Academy</span>
                         </div>
                         <div class="metric-card">
-                            <span class="metric-number gradient-text-rose">GDC</span>
+                            <span class="metric-number text-gradient-rose">GDC</span>
                             <span class="metric-label">Scholarship San Francisco</span>
                         </div>
                     </div>
 
                     <!-- Ação Principal: Download do Currículo em PDF -->
                     <div class="about-actions-row">
-                        <a href="assets/curriculo.pdf" download="Curriculo-Mariana-Abad.pdf" class="btn-gold-glow" id="downloadCurriculoBtn" aria-label="Baixar Currículo em formato PDF">
+                        <a href="assets/curriculo.pdf" download="Curriculo-Mariana-Abad.pdf" class="btn-apple" id="downloadCurriculoBtn" aria-label="Baixar Currículo em formato PDF">
                             <span class="btn-icon">📄</span>
-                            <span>Baixar Currículo (PDF)</span>
+                            <span>Baixar Currículo Oficial (PDF)</span>
                         </a>
                         <span class="about-location-tag">📍 Curitiba, Paraná • Brasil</span>
                     </div>
@@ -158,7 +267,7 @@
                     
                     <div class="aside-header">
                         <span class="aside-badge">INTERESSES & HOBBIES</span>
-                        <h2 class="aside-title">Além do Código</h2>
+                        <h3 class="aside-title">Além do Código</h3>
                         <p class="aside-subtitle">As paixões que alimentam minha criatividade e pensamento fora da caixa.</p>
                     </div>
 
@@ -168,7 +277,7 @@
                         <div class="hobby-item">
                             <div class="hobby-icon-wrapper hobby-gold">🎮</div>
                             <div class="hobby-details">
-                                <h3 class="hobby-name">Game Dev & Game Jams</h3>
+                                <h4 class="hobby-name">Game Dev & Game Jams</h4>
                                 <p class="hobby-desc">Veterana em Global Game Jams (12 participações), criação de jogos autorais e bolsista internacional na GDC 2019.</p>
                             </div>
                         </div>
@@ -177,7 +286,7 @@
                         <div class="hobby-item">
                             <div class="hobby-icon-wrapper hobby-rose">🎺</div>
                             <div class="hobby-details">
-                                <h3 class="hobby-name">Música & Produção Sonora</h3>
+                                <h4 class="hobby-name">Música & Produção Sonora</h4>
                                 <p class="hobby-desc">Formada em Licenciatura em Música com especialização em Tecnologias Sonoro-Musicais e trombonista de orquestra.</p>
                             </div>
                         </div>
@@ -186,7 +295,7 @@
                         <div class="hobby-item">
                             <div class="hobby-icon-wrapper hobby-gold">🚀</div>
                             <div class="hobby-details">
-                                <h3 class="hobby-name">Empreendedorismo & Docência</h3>
+                                <h4 class="hobby-name">Empreendedorismo & Docência</h4>
                                 <p class="hobby-desc">Entusiasta de Lean Startup, facilitação ágil (Scrum/Kanban) e formação de novos talentos em tecnologia.</p>
                             </div>
                         </div>
@@ -195,7 +304,7 @@
                         <div class="hobby-item">
                             <div class="hobby-icon-wrapper hobby-rose">🤖</div>
                             <div class="hobby-details">
-                                <h3 class="hobby-name">Inteligência Artificial & Agentes</h3>
+                                <h4 class="hobby-name">Inteligência Artificial & Agentes</h4>
                                 <p class="hobby-desc">Estudo contínuo de LLMs, arquiteturas RAG, agentes autônomos e automações de ponta a ponta.</p>
                             </div>
                         </div>
@@ -215,8 +324,8 @@
             
             <!-- Badge de Topo da Seção -->
             <div class="section-badge-wrapper">
-                <span class="glass-pill-badge">
-                    <span class="status-dot-gold" aria-hidden="true"></span>
+                <span class="glass-pill">
+                    <span class="status-dot"></span>
                     <span>FORMAÇÃO ACADÊMICA & CERTIFICAÇÕES</span>
                 </span>
             </div>
@@ -224,7 +333,7 @@
             <!-- Cabeçalho da Seção -->
             <div class="section-header-block">
                 <h2 class="section-main-title">
-                    Trajetória de <span class="gradient-text-gold">Aprendizado Contínuo</span>
+                    Trajetória de <span class="text-gradient-gold">Aprendizado Contínuo</span>
                 </h2>
                 <p class="section-description">
                     Uma sólida base técnica que conecta engenharia de software e inovação mobile à pesquisa acadêmica, música e inteligência artificial.
@@ -238,11 +347,10 @@
                 <article class="timeline-item">
                     <div class="timeline-dot-wrapper">
                         <div class="timeline-dot"></div>
-                        <span class="timeline-year-tag">2024 — 2028</span>
                     </div>
                     <div class="bento-card timeline-card">
                         <div class="timeline-card-header">
-                            <span class="timeline-badge-active">EM ANDAMENTO</span>
+                            <span class="timeline-badge-active">EM ANDAMENTO (2024 — 2028)</span>
                             <span class="timeline-institution">UNINTER • Centro Universitário Internacional</span>
                         </div>
                         <h3 class="timeline-degree-title">Bacharelado em Sistemas de Informação</h3>
@@ -262,11 +370,10 @@
                 <article class="timeline-item">
                     <div class="timeline-dot-wrapper">
                         <div class="timeline-dot"></div>
-                        <span class="timeline-year-tag">2018 — 2020</span>
                     </div>
                     <div class="bento-card timeline-card">
                         <div class="timeline-card-header">
-                            <span class="timeline-badge-completed">FORMAÇÃO CONCLUÍDA</span>
+                            <span class="timeline-badge-completed">FORMAÇÃO CONCLUÍDA (2018 — 2020)</span>
                             <span class="timeline-institution">PUC-PR • Pontifícia Universidade Católica do Paraná</span>
                         </div>
                         <h3 class="timeline-degree-title">Apple Developer Academy</h3>
@@ -286,11 +393,10 @@
                 <article class="timeline-item">
                     <div class="timeline-dot-wrapper">
                         <div class="timeline-dot"></div>
-                        <span class="timeline-year-tag">2018 — 2020</span>
                     </div>
                     <div class="bento-card timeline-card">
                         <div class="timeline-card-header">
-                            <span class="timeline-badge-completed">MESTRADO</span>
+                            <span class="timeline-badge-completed">MESTRADO (2018 — 2020)</span>
                             <span class="timeline-institution">Universidad del Atlántico</span>
                         </div>
                         <h3 class="timeline-degree-title">Mestrado em Educação: Formação de Professores</h3>
@@ -309,11 +415,10 @@
                 <article class="timeline-item">
                     <div class="timeline-dot-wrapper">
                         <div class="timeline-dot"></div>
-                        <span class="timeline-year-tag">2016 — 2017</span>
                     </div>
                     <div class="bento-card timeline-card">
                         <div class="timeline-card-header">
-                            <span class="timeline-badge-completed">ESPECIALIZAÇÃO</span>
+                            <span class="timeline-badge-completed">ESPECIALIZAÇÃO (2016 — 2017)</span>
                             <span class="timeline-institution">PUC-PR • Pontifícia Universidade Católica do Paraná</span>
                         </div>
                         <h3 class="timeline-degree-title">Especialização em Tecnologias Sonoro-Musicais</h3>
@@ -332,11 +437,10 @@
                 <article class="timeline-item">
                     <div class="timeline-dot-wrapper">
                         <div class="timeline-dot"></div>
-                        <span class="timeline-year-tag">2015 — 2016</span>
                     </div>
                     <div class="bento-card timeline-card">
                         <div class="timeline-card-header">
-                            <span class="timeline-badge-completed">ESPECIALIZAÇÃO</span>
+                            <span class="timeline-badge-completed">ESPECIALIZAÇÃO (2015 — 2016)</span>
                             <span class="timeline-institution">UNINTER • Centro Universitário Internacional</span>
                         </div>
                         <h3 class="timeline-degree-title">Especialização em Metodologia do Ensino Superior</h3>
@@ -354,16 +458,15 @@
                 <article class="timeline-item">
                     <div class="timeline-dot-wrapper">
                         <div class="timeline-dot"></div>
-                        <span class="timeline-year-tag">GRADUAÇÃO</span>
                     </div>
                     <div class="bento-card timeline-card">
                         <div class="timeline-card-header">
-                            <span class="timeline-badge-completed">GRADUAÇÃO</span>
-                            <span class="timeline-institution">Formação Superior</span>
+                            <span class="timeline-badge-completed">GRADUAÇÃO SUPERIOR</span>
+                            <span class="timeline-institution">Formação Universitária</span>
                         </div>
                         <h3 class="timeline-degree-title">Licenciatura em Música</h3>
                         <p class="timeline-card-desc">
-                            Desenvolvimento de raciocínio analítico estruturado, teoria da percepção, prática em grupo e trombonista de orquestra.
+                            Desenvolvimento de raciocínio analítico estruturado, teoria da percepção, prática em grupo e atuação como trombonista de orquestra.
                         </p>
                         <div class="timeline-skills-tags">
                             <span class="skill-pill">Estrutura & Teoria</span>
@@ -494,8 +597,8 @@
             
             <!-- Badge de Topo da Seção -->
             <div class="section-badge-wrapper">
-                <span class="glass-pill-badge">
-                    <span class="status-dot-gold" aria-hidden="true"></span>
+                <span class="glass-pill">
+                    <span class="status-dot"></span>
                     <span>PORTFÓLIO & PROJETOS AUTORAIS</span>
                 </span>
             </div>
@@ -503,7 +606,7 @@
             <!-- Cabeçalho da Seção -->
             <div class="section-header-block">
                 <h2 class="section-main-title">
-                    Soluções, Games & <span class="gradient-text-gold">Publicações</span>
+                    Soluções, Games & <span class="text-gradient-gold">Publicações</span>
                 </h2>
                 <p class="section-description">
                     Explore projetos de engenharia de software, artigos técnicos e jogos autorais desenvolvidos para desafios reais e game jams.
@@ -561,8 +664,8 @@
             
             <!-- Badge de Topo da Seção -->
             <div class="section-badge-wrapper">
-                <span class="glass-pill-badge">
-                    <span class="status-dot-gold" aria-hidden="true"></span>
+                <span class="glass-pill">
+                    <span class="status-dot"></span>
                     <span>CONTATO & NETWORKING</span>
                 </span>
             </div>
@@ -570,7 +673,7 @@
             <!-- Cabeçalho da Seção -->
             <div class="section-header-block">
                 <h2 class="section-main-title">
-                    Vamos Construir <span class="gradient-text-gold">Algo Incrível?</span>
+                    Vamos Construir <span class="text-gradient-gold">Algo Incrível?</span>
                 </h2>
                 <p class="section-description">
                     Estou sempre aberta a novas conexões, projetos de inovação, consultorias e oportunidades de liderança técnica.
@@ -677,7 +780,7 @@
                         </div>
 
                         <!-- Botão de Envio -->
-                        <button type="submit" class="btn-gold-glow" id="submitContactBtn" style="align-self: flex-start;">
+                        <button type="submit" class="btn-apple" id="submitContactBtn" style="align-self: flex-start;">
                             <span class="btn-icon">🚀</span>
                             <span>Enviar Mensagem</span>
                         </button>
@@ -697,11 +800,11 @@
         <div class="bento-card modal-card">
             <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Fechar modal">✕</button>
             <div class="modal-success-icon" aria-hidden="true">🎉</div>
-            <h3 class="modal-title gradient-text-gold" id="modalTitle">Mensagem Enviada!</h3>
+            <h3 class="modal-title text-gradient-gold" id="modalTitle">Mensagem Enviada!</h3>
             <p class="modal-message" id="modalCustomMessage">
                 Sua mensagem foi enviada com sucesso.
             </p>
-            <button type="button" class="btn-gold-glow modal-confirm-btn" id="modalConfirmBtn">
+            <button type="button" class="btn-apple modal-confirm-btn" id="modalConfirmBtn">
                 <span>Entendido</span>
             </button>
         </div>
@@ -709,7 +812,15 @@
 
     <!-- Rodapé Semântico -->
     <footer class="site-footer">
-        <!-- Estrutura do rodapé -->
+        <div class="footer-container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 3rem 1.5rem; text-align: center; border-top: 1px solid var(--border-glass); display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+            <div class="glass-pill" style="font-size: 0.72rem;">
+                <span class="status-dot"></span>
+                <span>MARIANA BEILUNE ABAD • CURRÍCULO ONLINE</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+                Desenvolvido com HTML5 Semântico, CSS3 Puro & JavaScript Vanilla ES6+ • Paleta Marsala, Rosé Gold & Dourado
+            </p>
+        </div>
     </footer>
 
     <!-- Scripts Modulares em Vanilla JS (ES6 Modules) -->

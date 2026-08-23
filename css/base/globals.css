@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSS BASE: RESETS, TIPOGRAFIA & UTILITÁRIOS GLOBAIS
+   CSS BASE: RESETS, TIPOGRAFIA & UTILITÁRIOS GLOBAIS (ESTILO MODELO.HTML)
    ========================================================================== */
 
 *, *::before, *::after {
@@ -21,9 +21,9 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     background-image: 
-        radial-gradient(circle at 15% 15%, rgba(122, 35, 55, 0.22) 0%, transparent 45%),
-        radial-gradient(circle at 85% 65%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(157, 49, 73, 0.15) 0%, transparent 40%);
+        radial-gradient(circle at 10% 10%, rgba(122, 35, 55, 0.28) 0%, transparent 45%),
+        radial-gradient(circle at 90% 40%, rgba(212, 175, 55, 0.14) 0%, transparent 50%),
+        radial-gradient(circle at 50% 85%, rgba(157, 49, 73, 0.20) 0%, transparent 45%);
     background-attachment: fixed;
 }
 
@@ -50,49 +50,61 @@ button {
     background: none;
 }
 
-/* Utilitários de Gradientes de Texto */
-.gradient-text-gold {
+/* ==========================================================================
+   TIPOGRAFIA & GRADIENTES DE TEXTO (HERDADOS DE MODELO.HTML)
+   ========================================================================== */
+.huge-title {
+    font-size: clamp(3.2rem, 7.5vw, 7.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    font-weight: 900;
+}
+
+.medium-title {
+    font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 900;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #e8b4bc 60%, #c88691 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient-gold {
     background: var(--gradient-text-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-.gradient-text-rose {
+.text-gradient-rose {
     background: var(--gradient-text-rose);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-/* Layout Principal e Seções */
-.main-content {
-    margin-top: var(--header-height);
-    width: 100%;
+.text-gradient-marsala {
+    background: linear-gradient(135deg, #ff7b89 0%, #c88691 50%, #9d3149 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.section-container {
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    padding: 5rem 1.5rem;
-    scroll-margin-top: calc(var(--header-height) + 1.5rem);
-}
-
-/* Cabeçalho de Seção */
-.section-badge-wrapper {
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-}
-
-.glass-pill-badge {
+/* Glass Pill Badges (Estilo HUD modelo.html) */
+.glass-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.45rem 1rem;
+    padding: 0.45rem 1.15rem;
     border-radius: 9999px;
     background: rgba(26, 10, 16, 0.85);
     backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border-glass);
     font-family: var(--font-mono);
     font-size: 0.75rem;
@@ -101,29 +113,72 @@ button {
     text-transform: uppercase;
 }
 
-.status-dot-gold {
-    width: 6px;
-    height: 6px;
+/* Pulse Live Indicator (modelo.html status-dot) */
+.status-dot {
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background-color: var(--gold-primary);
+    display: inline-block;
+    position: relative;
     box-shadow: 0 0 8px var(--gold-primary);
+}
+
+.status-dot::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.7;
+    animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 0.8; }
+    100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* Layout Principal e Seções */
+.content-layer {
+    position: relative;
+    z-index: 10;
+}
+
+.main-content {
+    margin-top: var(--header-height);
+    width: 100%;
+}
+
+.section-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 6rem 1.5rem;
+    scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+.section-badge-wrapper {
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
 }
 
 .section-header-block {
     margin-bottom: 3.5rem;
-    max-width: 800px;
+    max-width: 850px;
 }
 
 .section-main-title {
-    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
     font-weight: 900;
     letter-spacing: -0.03em;
-    line-height: 1.15;
+    line-height: 1.12;
     margin-bottom: 1rem;
 }
 
 .section-description {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.65;
+    font-weight: 300;
 }

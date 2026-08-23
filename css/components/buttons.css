@@ -1,25 +1,31 @@
 /* ==========================================================================
-   COMPONENTE: BOTÕES LUMINOSOS, PILLS & TAGS
+   COMPONENTE: BOTÕES LUMINOSOS & ESTILO APPLE (HERDADO DE MODELO.HTML)
    ========================================================================== */
 
-/* Botão Dourado de Alto Impacto com Reflexo de Luz */
+/* Botão Estilo Apple com Shimmer e Brilho Dourado / Rosé Gold */
+.btn-apple,
 .btn-gold-glow {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
-    padding: 0.95rem 1.85rem;
+    padding: 0.95rem 2rem;
     border-radius: 9999px;
     background: var(--gradient-gold-btn);
     color: #120409;
     font-weight: 700;
     font-size: 0.95rem;
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 25px var(--gold-glow);
-    transition: var(--transition-smooth);
+    cursor: pointer;
+    box-shadow: 0 0 25px var(--gold-glow), 0 10px 25px rgba(0, 0, 0, 0.4);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    border: none;
 }
 
+.btn-apple::after,
 .btn-gold-glow::after {
     content: '';
     position: absolute;
@@ -27,16 +33,19 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(60deg, transparent 30%, rgba(255, 255, 255, 0.75) 50%, transparent 70%);
+    background: linear-gradient(60deg, transparent 30%, rgba(255, 255, 255, 0.85) 50%, transparent 70%);
     transform: rotate(30deg) translateX(-100%);
-    transition: transform 0.75s ease;
+    transition: transform 0.8s ease;
 }
 
+.btn-apple:hover,
 .btn-gold-glow:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.55), 0 0 70px rgba(232, 180, 188, 0.3);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 0 45px rgba(212, 175, 55, 0.6), 0 0 75px rgba(232, 180, 188, 0.35);
+    color: #000000;
 }
 
+.btn-apple:hover::after,
 .btn-gold-glow:hover::after {
     transform: rotate(30deg) translateX(100%);
 }
@@ -45,13 +54,36 @@
     font-size: 1.1rem;
 }
 
+/* Botão Secundário Glass */
+.btn-glass-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.95rem 1.85rem;
+    border-radius: 9999px;
+    background: rgba(26, 10, 16, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+.btn-glass-secondary:hover {
+    border-color: var(--border-glass-hover);
+    background: rgba(40, 15, 25, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px var(--rose-gold-glow);
+}
+
 /* Pills & Tags */
 .skill-pill {
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    padding: 0.3rem 0.75rem;
+    padding: 0.35rem 0.85rem;
     border-radius: 8px;
-    background: rgba(15, 5, 8, 0.7);
+    background: rgba(15, 5, 8, 0.75);
     border: 1px solid var(--border-glass);
     color: var(--rose-gold-light);
     transition: var(--transition-smooth);
