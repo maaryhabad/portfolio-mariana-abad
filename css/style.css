@@ -43,6 +43,7 @@
     --gradient-text-gold: linear-gradient(135deg, #f3df95 0%, #d4af37 50%, #b8860b 100%);
     --gradient-accent: linear-gradient(135deg, #9d3149 0%, #c88691 50%, #d4af37 100%);
     --gradient-gold-btn: linear-gradient(135deg, #f3df95 0%, #d4af37 50%, #aa8010 100%);
+    --gradient-timeline-line: linear-gradient(to bottom, var(--gold-primary), var(--rose-gold), var(--marsala-primary));
 
     /* Sombras e Elevação */
     --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.7);
@@ -328,7 +329,7 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   5. CONTAINER BASE & CARDS BENTO (GLASSMORPHISM)
+   5. CONTAINER BASE, CABEÇALHOS DE SEÇÃO & CARDS BENTO
    -------------------------------------------------------------------------- */
 .main-content {
     margin-top: var(--header-height);
@@ -344,7 +345,7 @@ button {
 
 /* Badge de Topo de Seções */
 .section-badge-wrapper {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
 }
@@ -373,6 +374,25 @@ button {
     box-shadow: 0 0 8px var(--gold-primary);
 }
 
+.section-header-block {
+    margin-bottom: 3.5rem;
+    max-width: 800px;
+}
+
+.section-main-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
 /* Estilo Base dos Bento Cards */
 .bento-card {
     background: var(--surface-glass-card);
@@ -392,7 +412,7 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   6. SEÇÃO SOBRE MIM (ESTRUTURA EM GRID, PERFIL, HOBBIES E BOTÃO)
+   6. SEÇÃO SOBRE MIM
    -------------------------------------------------------------------------- */
 .about-grid {
     display: grid;
@@ -401,7 +421,6 @@ button {
     align-items: start;
 }
 
-/* Cartão Principal de Apresentação */
 .about-main-card {
     padding: 2.75rem 2.5rem;
     display: flex;
@@ -415,7 +434,6 @@ button {
     gap: 2rem;
 }
 
-/* Figura Semântica e Avatar com Anel Iluminado */
 .profile-figure {
     display: flex;
     flex-direction: column;
@@ -478,7 +496,6 @@ button {
     letter-spacing: 0.02em;
 }
 
-/* Título e Texto de Abertura */
 .about-title-block {
     display: flex;
     flex-direction: column;
@@ -499,7 +516,6 @@ button {
     font-weight: 400;
 }
 
-/* Texto Biográfico */
 .about-bio-content {
     display: flex;
     flex-direction: column;
@@ -521,7 +537,6 @@ button {
     font-style: italic;
 }
 
-/* Grid de Métricas Bento */
 .about-metrics-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -561,7 +576,6 @@ button {
     letter-spacing: 0.04em;
 }
 
-/* Linha de Ação e Botão de Download */
 .about-actions-row {
     display: flex;
     align-items: center;
@@ -616,9 +630,7 @@ button {
     color: var(--text-muted);
 }
 
-/* --------------------------------------------------------------------------
-   7. PAINEL LATERAL DE HOBBIES (<ASIDE>)
-   -------------------------------------------------------------------------- */
+/* Hobbies Aside */
 .hobbies-aside {
     padding: 2.25rem 2rem;
     display: flex;
@@ -716,7 +728,312 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   8. RESPONSIVIDADE (MEDIA QUERIES)
+   7. SEÇÃO FORMAÇÃO — LINHA DO TEMPO EM CSS PURO
+   -------------------------------------------------------------------------- */
+.timeline-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    padding-left: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+/* Eixo Central/Lateral da Timeline construído com ::before */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    left: 12px;
+    width: 3px;
+    background: var(--gradient-timeline-line);
+    border-radius: 9999px;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nó Indicador com Glow Dourado */
+.timeline-dot-wrapper {
+    position: absolute;
+    left: -2.5rem;
+    top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.timeline-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 3px solid var(--gold-primary);
+    box-shadow: 0 0 18px var(--gold-glow), inset 0 0 8px rgba(212, 175, 55, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    z-index: 2;
+}
+
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.2);
+    border-color: var(--gold-light);
+    box-shadow: 0 0 25px var(--gold-primary);
+}
+
+.timeline-year-tag {
+    display: none;
+}
+
+/* Cartão Bento da Linha do Tempo */
+.timeline-card {
+    padding: 2rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 0.5rem;
+}
+
+.timeline-card:hover {
+    transform: translateX(6px);
+}
+
+.timeline-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.timeline-badge-active {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(212, 175, 55, 0.18);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--gold-light);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.timeline-badge-completed {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(200, 134, 145, 0.15);
+    border: 1px solid var(--border-glass);
+    color: var(--rose-gold-light);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.timeline-institution {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.timeline-degree-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.timeline-card-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+.timeline-skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.skill-pill {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 8px;
+    background: rgba(15, 5, 8, 0.7);
+    border: 1px solid var(--border-glass);
+    color: var(--rose-gold-light);
+    transition: var(--transition-smooth);
+}
+
+.skill-pill:hover {
+    border-color: var(--gold-primary);
+    color: var(--gold-light);
+}
+
+/* --------------------------------------------------------------------------
+   8. GRADE COMPLEMENTAR (IDIOMAS & CERTIFICAÇÕES)
+   -------------------------------------------------------------------------- */
+.education-supplement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 1.75rem;
+}
+
+.education-card-box {
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.supplement-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.supplement-icon-gold, .supplement-icon-rose {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.supplement-icon-gold {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.supplement-icon-rose {
+    background: rgba(200, 134, 145, 0.15);
+    border: 1px solid rgba(200, 134, 145, 0.35);
+}
+
+.supplement-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.supplement-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* Barras de Proficiência de Idiomas */
+.languages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.lang-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.lang-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.lang-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.lang-level {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--rose-gold-light);
+}
+
+.lang-bar-track {
+    width: 100%;
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(15, 5, 8, 0.8);
+    border: 1px solid var(--border-glass);
+    overflow: hidden;
+}
+
+.lang-bar-fill {
+    height: 100%;
+    border-radius: 9999px;
+    background: var(--gradient-accent);
+}
+
+.fill-100 { width: 100%; }
+.fill-95 { width: 95%; }
+.fill-30 { width: 30%; }
+
+/* Grade de Certificações */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.cert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.9rem;
+    border-radius: 1rem;
+    background: rgba(15, 5, 8, 0.55);
+    border: 1px solid var(--border-glass);
+    transition: var(--transition-smooth);
+}
+
+.cert-item:hover {
+    border-color: var(--border-glass-hover);
+    transform: translateY(-2px);
+    background: rgba(26, 10, 16, 0.85);
+}
+
+.cert-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold-primary);
+    box-shadow: 0 0 8px var(--gold-primary);
+    margin-top: 0.35rem;
+    flex-shrink: 0;
+}
+
+.cert-name {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: block;
+    line-height: 1.35;
+}
+
+.cert-issuer {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 0.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   9. RESPONSIVIDADE (MEDIA QUERIES)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
     .about-grid {
@@ -725,6 +1042,10 @@ button {
 
     .about-metrics-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .education-supplement-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -793,5 +1114,31 @@ button {
 
     .btn-gold-glow {
         justify-content: center;
+    }
+
+    .timeline-container {
+        padding-left: 2rem;
+    }
+
+    .timeline-container::before {
+        left: 8px;
+    }
+
+    .timeline-dot-wrapper {
+        left: -2rem;
+    }
+
+    .timeline-dot {
+        width: 20px;
+        height: 20px;
+    }
+
+    .timeline-card {
+        padding: 1.5rem 1.25rem;
+        margin-left: 0.25rem;
+    }
+
+    .certifications-grid {
+        grid-template-columns: 1fr;
     }
 }
