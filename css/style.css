@@ -11,6 +11,7 @@
 @import url('./components/header.css');
 @import url('./components/bento-card.css');
 @import url('./components/buttons.css');
+@import url('./components/modal.css');
 
 /* 3. Seções do Portfólio */
 @import url('./sections/about.css');

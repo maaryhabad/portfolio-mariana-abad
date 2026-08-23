@@ -11,6 +11,7 @@ import { GitHubModule } from './modules/github.js';
 import { MediumModule } from './modules/medium.js';
 import { ItchIoModule } from './modules/itchio.js';
 import { ContactModule } from './modules/contact.js';
+import { ModalModule } from './modules/modal.js';
 import { SpotlightModule } from './modules/spotlight.js';
 import { ParticlesModule } from './modules/particles.js';
 import { RevealModule } from './modules/reveal.js';
@@ -22,9 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     SpotlightModule.init();
     RevealModule.init();
 
-    // 2. Componentes de Interface & Navegação
+    // 2. Componentes de Interface, Navegação & Modais
     HeaderModule.init();
     PortfolioTabsModule.init();
+    ModalModule.init();
 
     // 3. Integrações de Dados & Formulários
     GitHubModule.init();

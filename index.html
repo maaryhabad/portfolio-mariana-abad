@@ -17,6 +17,9 @@
 </head>
 <body>
 
+    <!-- Canvas para Partículas e Poeira Cósmica em 2D Nativo -->
+    <canvas id="ambientCanvas" aria-hidden="true"></canvas>
+
     <!-- Barra Superior de Progresso de Rolagem -->
     <div class="scroll-progress-container" aria-hidden="true">
         <div id="scrollProgressBar" class="scroll-progress-bar"></div>
@@ -687,6 +690,22 @@
         </section>
 
     </main>
+
+    <!-- Modal Customizado de Confirmação de Envio (Passo 10) -->
+    <div id="successModal" class="custom-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalCustomMessage" hidden>
+        <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
+        <div class="bento-card modal-card">
+            <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Fechar modal">✕</button>
+            <div class="modal-success-icon" aria-hidden="true">🎉</div>
+            <h3 class="modal-title gradient-text-gold" id="modalTitle">Mensagem Enviada!</h3>
+            <p class="modal-message" id="modalCustomMessage">
+                Sua mensagem foi enviada com sucesso.
+            </p>
+            <button type="button" class="btn-gold-glow modal-confirm-btn" id="modalConfirmBtn">
+                <span>Entendido</span>
+            </button>
+        </div>
+    </div>
 
     <!-- Rodapé Semântico -->
     <footer class="site-footer">
