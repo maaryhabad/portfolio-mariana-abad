@@ -1,0 +1,20 @@
+/* ==========================================================================
+   COMPONENTE: BENTO CARDS & GLASSMORPHISM SURFACES
+   ========================================================================== */
+
+.bento-card {
+    background: var(--surface-glass-card);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--border-radius-card);
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.bento-card:hover {
+    border-color: var(--border-glass-hover);
+    box-shadow: var(--shadow-card), 0 0 30px rgba(200, 134, 145, 0.15);
+}
