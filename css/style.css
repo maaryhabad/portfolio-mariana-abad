@@ -1,0 +1,379 @@
+/* ==========================================================================
+   PORTFÓLIO PESSOAL & CURRÍCULO ONLINE — MARIANA ABAD
+   Estilos em CSS3 Puro (Vanilla) — Design System Marsala, Rosé Gold & Dourado
+   Arquitetura: Clean CSS, Flexbox, CSS Grid, Glassmorphism & Custom Properties
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS & VARIÁVEIS CSS (:ROOT)
+   -------------------------------------------------------------------------- */
+:root {
+    /* Paleta Principal Dark: Marsala, Rosé Gold e Dourado Imperial */
+    --bg-primary: #0f0508;
+    --bg-secondary: #1a0a10;
+    --bg-tertiary: #270f19;
+    
+    --marsala-primary: #7a2337;
+    --marsala-light: #9d3149;
+    --marsala-dark: #420f1b;
+    
+    --rose-gold: #c88691;
+    --rose-gold-light: #e8b4bc;
+    --rose-gold-glow: rgba(200, 134, 145, 0.25);
+    
+    --gold-primary: #d4af37;
+    --gold-light: #f3df95;
+    --gold-dark: #9a7617;
+    --gold-glow: rgba(212, 175, 55, 0.25);
+
+    /* Cores de Texto e Contrastes */
+    --text-primary: #fdf8f8;
+    --text-secondary: #c5a9b2;
+    --text-muted: #8e6d77;
+    
+    /* Superfícies de Vidro (Glassmorphism) e Bordas */
+    --surface-glass: rgba(26, 10, 16, 0.78);
+    --surface-glass-header: rgba(15, 5, 8, 0.82);
+    --surface-glass-card: rgba(30, 12, 20, 0.85);
+    --border-glass: rgba(232, 180, 188, 0.16);
+    --border-glass-hover: rgba(243, 223, 149, 0.4);
+    
+    /* Gradientes Assinatura */
+    --gradient-text-rose: linear-gradient(135deg, #ffffff 0%, #e8b4bc 50%, #c88691 100%);
+    --gradient-text-gold: linear-gradient(135deg, #f3df95 0%, #d4af37 50%, #b8860b 100%);
+    --gradient-accent: linear-gradient(135deg, #9d3149 0%, #c88691 50%, #d4af37 100%);
+    --gradient-gold-btn: linear-gradient(135deg, #f3df95 0%, #d4af37 50%, #aa8010 100%);
+
+    /* Sombras e Elevação */
+    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.65);
+    --shadow-glow: 0 0 35px var(--rose-gold-glow);
+    --shadow-gold-glow: 0 0 35px var(--gold-glow);
+
+    /* Tipografia e Dimensões */
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    
+    --header-height: 76px;
+    --container-max-width: 1240px;
+    --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & REGRAS GLOBAIS
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(122, 35, 55, 0.18) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.10) 0%, transparent 45%);
+    background-attachment: fixed;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. BARRA DE PROGRESSO DE ROLAGEM (TOP PROGRESS BAR)
+   -------------------------------------------------------------------------- */
+.scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    z-index: 1001;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--gradient-accent);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+    transition: width 0.1s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   4. CABEÇALHO FLUTUANTE & NAVEGAÇÃO FIXA (STICKY HEADER)
+   -------------------------------------------------------------------------- */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background: var(--surface-glass-header);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border-glass);
+    z-index: 1000;
+    transition: var(--transition-smooth);
+}
+
+.header-container {
+    max-width: var(--container-max-width);
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+/* Identidade de Marca (Logo) */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    cursor: pointer;
+}
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--marsala-primary), var(--gold-primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: #ffffff;
+    box-shadow: 0 0 18px var(--rose-gold-glow);
+    transition: var(--transition-smooth);
+}
+
+.brand-logo:hover .brand-icon {
+    transform: rotate(6deg) scale(1.08);
+    box-shadow: 0 0 25px var(--gold-glow);
+}
+
+.brand-text-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+.brand-name .highlight {
+    background: var(--gradient-text-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--rose-gold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Menu de Navegação Semântica */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 0.55rem 1rem;
+    border-radius: 9999px;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+    background: rgba(200, 134, 145, 0.12);
+}
+
+.nav-link.active {
+    color: var(--gold-light);
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* HUD Badges & Indicador de Status */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(26, 10, 16, 0.9);
+    border: 1px solid var(--border-glass);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+}
+
+.status-dot-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--gold-primary);
+    position: relative;
+    display: inline-block;
+}
+
+.status-dot-pulse::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0.75;
+    animation: status-pulse 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes status-pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Botão Mobile (Hambúrguer) */
+.mobile-menu-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border-glass);
+    background: var(--surface-glass);
+    color: var(--text-primary);
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: var(--transition-smooth);
+}
+
+.mobile-menu-btn:hover {
+    border-color: var(--rose-gold);
+    color: var(--rose-gold-light);
+}
+
+/* --------------------------------------------------------------------------
+   5. CONTAINER & SEÇÕES BASE (ESTRUTURA SINGLE PAGE)
+   -------------------------------------------------------------------------- */
+.main-content {
+    margin-top: var(--header-height);
+    width: 100%;
+}
+
+.section-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVIDADE
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .status-badge {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        background: rgba(15, 5, 8, 0.96);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        border-bottom: 1px solid var(--border-glass);
+        padding: 1.5rem;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.8rem;
+    }
+
+    .nav-menu.is-open {
+        display: flex;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .nav-link {
+        display: block;
+        text-align: center;
+        padding: 0.75rem 1rem;
+    }
+}
