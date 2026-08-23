@@ -484,9 +484,116 @@
 
         </section>
 
-        <!-- Seção 3: Portfólio (Estrutura a ser detalhada nos Passos 5 a 8) -->
+        <!-- ====================================================================
+             SEÇÃO 3: PORTFÓLIO (SISTEMA DE ABAS & CSS GRID RESPONSIVO)
+             ==================================================================== -->
         <section id="portfolio" class="section-container">
-            <!-- Conteúdo construído nos Passos 5-8 -->
+            
+            <!-- Badge de Topo da Seção -->
+            <div class="section-badge-wrapper">
+                <span class="glass-pill-badge">
+                    <span class="status-dot-gold" aria-hidden="true"></span>
+                    <span>PORTFÓLIO & PROJETOS AUTORAIS</span>
+                </span>
+            </div>
+
+            <!-- Cabeçalho da Seção -->
+            <div class="section-header-block">
+                <h2 class="section-main-title">
+                    Soluções, Games & <span class="gradient-text-gold">Publicações</span>
+                </h2>
+                <p class="section-description">
+                    Explore projetos de engenharia de software, artigos técnicos e jogos autorais desenvolvidos para desafios reais e game jams.
+                </p>
+            </div>
+
+            <!-- Navegação de Abas (WAI-ARIA Tabs) -->
+            <nav class="portfolio-tabs-nav" role="tablist" aria-label="Categorias do Portfólio">
+                <button type="button" class="portfolio-tab-btn is-active" role="tab" aria-selected="true" aria-controls="github-tab-panel" data-target="github-tab-panel">
+                    <span class="tab-icon">🐙</span>
+                    <span>Repositórios GitHub</span>
+                </button>
+                <button type="button" class="portfolio-tab-btn" role="tab" aria-selected="false" aria-controls="medium-tab-panel" data-target="medium-tab-panel">
+                    <span class="tab-icon">✍️</span>
+                    <span>Artigos no Medium</span>
+                </button>
+                <button type="button" class="portfolio-tab-btn" role="tab" aria-selected="false" aria-controls="itchio-tab-panel" data-target="itchio-tab-panel">
+                    <span class="tab-icon">🎮</span>
+                    <span>Jogos no Itch.io</span>
+                </button>
+            </nav>
+
+            <!-- Contêiner de Painéis -->
+            <div class="portfolio-panels-wrapper">
+                
+                <!-- Painel 1: Repositórios GitHub (Integração Dinâmica no Passo 6) -->
+                <div class="portfolio-tab-panel is-active" id="github-tab-panel" role="tabpanel" aria-label="Projetos do GitHub">
+                    <div class="portfolio-grid" id="githubProjectsGrid">
+                        <!-- Skeleton Loaders iniciais antes do carregamento da API -->
+                        <div class="bento-card project-card skeleton-loader">
+                            <div class="skeleton-line title"></div>
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line sub"></div>
+                        </div>
+                        <div class="bento-card project-card skeleton-loader">
+                            <div class="skeleton-line title"></div>
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line sub"></div>
+                        </div>
+                        <div class="bento-card project-card skeleton-loader">
+                            <div class="skeleton-line title"></div>
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line sub"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painel 2: Artigos no Medium (Integração Dinâmica no Passo 7) -->
+                <div class="portfolio-tab-panel" id="medium-tab-panel" role="tabpanel" aria-label="Artigos do Medium" hidden>
+                    <div class="portfolio-grid" id="mediumArticlesGrid">
+                        <!-- Skeleton Loaders iniciais -->
+                        <div class="bento-card project-card skeleton-loader">
+                            <div class="skeleton-line title"></div>
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line sub"></div>
+                        </div>
+                        <div class="bento-card project-card skeleton-loader">
+                            <div class="skeleton-line title"></div>
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line sub"></div>
+                        </div>
+                        <div class="bento-card project-card skeleton-loader">
+                            <div class="skeleton-line title"></div>
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line sub"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painel 3: Jogos no Itch.io (Estrutura e Embeds no Passo 8) -->
+                <div class="portfolio-tab-panel" id="itchio-tab-panel" role="tabpanel" aria-label="Jogos no Itch.io" hidden>
+                    <div class="portfolio-grid" id="itchioGamesGrid">
+                        <!-- Skeleton Loaders iniciais -->
+                        <div class="bento-card project-card skeleton-loader">
+                            <div class="skeleton-line title"></div>
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line sub"></div>
+                        </div>
+                        <div class="bento-card project-card skeleton-loader">
+                            <div class="skeleton-line title"></div>
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line sub"></div>
+                        </div>
+                        <div class="bento-card project-card skeleton-loader">
+                            <div class="skeleton-line title"></div>
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line sub"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </section>
 
         <!-- Seção 4: Contato (Estrutura a ser detalhada nos Passos 9 e 10) -->

@@ -1,0 +1,215 @@
+/* ==========================================================================
+   SEÇÃO: PORTFÓLIO & PROJETOS AUTORAIS (ABAS & CSS GRID)
+   ========================================================================== */
+
+/* Barra de Navegação de Abas */
+.portfolio-tabs-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.portfolio-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.85rem 1.65rem;
+    border-radius: 9999px;
+    background: rgba(26, 10, 16, 0.75);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    color: var(--text-secondary);
+    font-family: var(--font-main);
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.portfolio-tab-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-glass-hover);
+    background: rgba(40, 15, 25, 0.85);
+    transform: translateY(-2px);
+}
+
+.portfolio-tab-btn.is-active {
+    color: #120409;
+    background: var(--gradient-gold-btn);
+    border-color: var(--gold-light);
+    box-shadow: 0 0 25px var(--gold-glow);
+    font-weight: 700;
+}
+
+.tab-icon {
+    font-size: 1.15rem;
+}
+
+/* Contêiner de Painéis */
+.portfolio-panels-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+}
+
+.portfolio-tab-panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.portfolio-tab-panel.is-active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: tabFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tabFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Grade Responsiva em CSS Grid Puro */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+    width: 100%;
+}
+
+/* Estilo dos Cards de Projeto */
+.project-card {
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+    gap: 1.5rem;
+}
+
+.project-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.project-icon-box {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: rgba(212, 175, 55, 0.14);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.28rem 0.7rem;
+    border-radius: 9999px;
+    background: rgba(200, 134, 145, 0.15);
+    border: 1px solid var(--border-glass);
+    color: var(--rose-gold-light);
+}
+
+.project-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.project-description {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 1.25rem;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+}
+
+.project-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    transition: var(--transition-smooth);
+}
+
+.project-link-btn:hover {
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+/* Skeleton Loading State (Carregamento Elegante) */
+.skeleton-loader {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    border-radius: var(--border-radius-card);
+    background: rgba(26, 10, 16, 0.5);
+    border: 1px solid var(--border-glass);
+}
+
+.skeleton-line {
+    height: 14px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, rgba(200, 134, 145, 0.1) 25%, rgba(200, 134, 145, 0.25) 50%, rgba(200, 134, 145, 0.1) 75%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.8s infinite;
+}
+
+.skeleton-line.title {
+    height: 24px;
+    width: 60%;
+}
+
+.skeleton-line.sub {
+    width: 40%;
+}
+
+@keyframes skeletonShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Responsividade do Portfólio */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-tab-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

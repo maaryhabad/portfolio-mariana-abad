@@ -6,8 +6,10 @@
  */
 
 import { HeaderModule } from './modules/header.js';
+import { PortfolioTabsModule } from './modules/portfolio-tabs.js';
 
 // Inicializa os módulos após o carregamento do DOM
 document.addEventListener('DOMContentLoaded', () => {
     HeaderModule.init();
+    PortfolioTabsModule.init();
 });
