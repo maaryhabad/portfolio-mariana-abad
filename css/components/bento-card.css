@@ -1,5 +1,5 @@
 /* ==========================================================================
-   COMPONENTE: BENTO CARDS & GLASSMORPHISM SURFACES
+   COMPONENTE: BENTO CARDS & GLASSMORPHISM COM SPOTLIGHT INTERATIVO
    ========================================================================== */
 
 .bento-card {
@@ -11,10 +11,53 @@
     box-shadow: var(--shadow-card);
     position: relative;
     overflow: hidden;
-    transition: var(--transition-smooth);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.35s ease, 
+                box-shadow 0.35s ease;
+}
+
+/* Spotlight Radial Dinâmico que segue o Cursor do Mouse (Herdado do modelo.html) */
+.bento-card::before {
+    content: '';
+    position: absolute;
+    top: var(--mouse-y, 50%);
+    left: var(--mouse-x, 50%);
+    transform: translate(-50%, -50%);
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, var(--card-glow, rgba(212, 175, 55, 0.22)) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .bento-card:hover {
+    transform: translateY(-4px);
     border-color: var(--border-glass-hover);
-    box-shadow: var(--shadow-card), 0 0 30px rgba(200, 134, 145, 0.15);
+    box-shadow: var(--shadow-card), 0 0 35px var(--rose-gold-glow);
+}
+
+.bento-card:hover::before {
+    opacity: 1;
+}
+
+/* Garante que o conteúdo interno fique acima da camada de spotlight */
+.bento-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Animações de Revelação por Scroll (Intersection Observer) */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
