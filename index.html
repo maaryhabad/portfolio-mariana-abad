@@ -526,69 +526,24 @@
             <!-- Contêiner de Painéis -->
             <div class="portfolio-panels-wrapper">
                 
-                <!-- Painel 1: Repositórios GitHub (Integração Dinâmica no Passo 6) -->
+                <!-- Painel 1: Repositórios GitHub -->
                 <div class="portfolio-tab-panel is-active" id="github-tab-panel" role="tabpanel" aria-label="Projetos do GitHub">
                     <div class="portfolio-grid" id="githubProjectsGrid">
-                        <!-- Skeleton Loaders iniciais antes do carregamento da API -->
-                        <div class="bento-card project-card skeleton-loader">
-                            <div class="skeleton-line title"></div>
-                            <div class="skeleton-line"></div>
-                            <div class="skeleton-line sub"></div>
-                        </div>
-                        <div class="bento-card project-card skeleton-loader">
-                            <div class="skeleton-line title"></div>
-                            <div class="skeleton-line"></div>
-                            <div class="skeleton-line sub"></div>
-                        </div>
-                        <div class="bento-card project-card skeleton-loader">
-                            <div class="skeleton-line title"></div>
-                            <div class="skeleton-line"></div>
-                            <div class="skeleton-line sub"></div>
-                        </div>
+                        <!-- Carregado dinamicamente via GitHubModule -->
                     </div>
                 </div>
 
-                <!-- Painel 2: Artigos no Medium (Integração Dinâmica no Passo 7) -->
+                <!-- Painel 2: Artigos no Medium -->
                 <div class="portfolio-tab-panel" id="medium-tab-panel" role="tabpanel" aria-label="Artigos do Medium" hidden>
                     <div class="portfolio-grid" id="mediumArticlesGrid">
-                        <!-- Skeleton Loaders iniciais -->
-                        <div class="bento-card project-card skeleton-loader">
-                            <div class="skeleton-line title"></div>
-                            <div class="skeleton-line"></div>
-                            <div class="skeleton-line sub"></div>
-                        </div>
-                        <div class="bento-card project-card skeleton-loader">
-                            <div class="skeleton-line title"></div>
-                            <div class="skeleton-line"></div>
-                            <div class="skeleton-line sub"></div>
-                        </div>
-                        <div class="bento-card project-card skeleton-loader">
-                            <div class="skeleton-line title"></div>
-                            <div class="skeleton-line"></div>
-                            <div class="skeleton-line sub"></div>
-                        </div>
+                        <!-- Carregado dinamicamente via MediumModule -->
                     </div>
                 </div>
 
-                <!-- Painel 3: Jogos no Itch.io (Estrutura e Embeds no Passo 8) -->
+                <!-- Painel 3: Jogos no Itch.io -->
                 <div class="portfolio-tab-panel" id="itchio-tab-panel" role="tabpanel" aria-label="Jogos no Itch.io" hidden>
                     <div class="portfolio-grid" id="itchioGamesGrid">
-                        <!-- Skeleton Loaders iniciais -->
-                        <div class="bento-card project-card skeleton-loader">
-                            <div class="skeleton-line title"></div>
-                            <div class="skeleton-line"></div>
-                            <div class="skeleton-line sub"></div>
-                        </div>
-                        <div class="bento-card project-card skeleton-loader">
-                            <div class="skeleton-line title"></div>
-                            <div class="skeleton-line"></div>
-                            <div class="skeleton-line sub"></div>
-                        </div>
-                        <div class="bento-card project-card skeleton-loader">
-                            <div class="skeleton-line title"></div>
-                            <div class="skeleton-line"></div>
-                            <div class="skeleton-line sub"></div>
-                        </div>
+                        <!-- Carregado dinamicamente via ItchIoModule -->
                     </div>
                 </div>
 
@@ -596,9 +551,139 @@
 
         </section>
 
-        <!-- Seção 4: Contato (Estrutura a ser detalhada nos Passos 9 e 10) -->
+        <!-- ====================================================================
+             SEÇÃO 4: CONTATO (FORMULÁRIO SEMÂNTICO COM VALIDAÇÃO REGEX)
+             ==================================================================== -->
         <section id="contato" class="section-container">
-            <!-- Conteúdo construído nos Passos 9-10 -->
+            
+            <!-- Badge de Topo da Seção -->
+            <div class="section-badge-wrapper">
+                <span class="glass-pill-badge">
+                    <span class="status-dot-gold" aria-hidden="true"></span>
+                    <span>CONTATO & NETWORKING</span>
+                </span>
+            </div>
+
+            <!-- Cabeçalho da Seção -->
+            <div class="section-header-block">
+                <h2 class="section-main-title">
+                    Vamos Construir <span class="gradient-text-gold">Algo Incrível?</span>
+                </h2>
+                <p class="section-description">
+                    Estou sempre aberta a novas conexões, projetos de inovação, consultorias e oportunidades de liderança técnica.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                
+                <!-- Coluna 1: Informações e Canais Diretos -->
+                <article class="bento-card contact-info-card">
+                    <div class="contact-info-header">
+                        <span class="aside-badge">CONEXÕES DIRETAS</span>
+                        <h3 class="contact-info-title">Informações de Contato</h3>
+                        <p class="contact-info-desc">
+                            Prefere um canal direto? Entre em contato por e-mail ou acompanhe meus artigos e projetos nas redes profissionais.
+                        </p>
+                    </div>
+
+                    <div class="contact-channels-list">
+                        
+                        <!-- Canal: E-mail -->
+                        <a href="mailto:maryh.abad@gmail.com" class="contact-channel-item" aria-label="Enviar e-mail para Mariana Abad">
+                            <div class="channel-icon-box channel-gold" aria-hidden="true">✉️</div>
+                            <div class="channel-details">
+                                <span class="channel-label">E-mail Principal</span>
+                                <span class="channel-value">maryh.abad@gmail.com</span>
+                            </div>
+                        </a>
+
+                        <!-- Canal: LinkedIn -->
+                        <a href="https://www.linkedin.com/in/mariana-abad" target="_blank" rel="noopener noreferrer" class="contact-channel-item" aria-label="Acessar perfil do LinkedIn de Mariana Abad">
+                            <div class="channel-icon-box channel-rose" aria-hidden="true">💼</div>
+                            <div class="channel-details">
+                                <span class="channel-label">LinkedIn Profissional</span>
+                                <span class="channel-value">linkedin.com/in/mariana-abad</span>
+                            </div>
+                        </a>
+
+                        <!-- Canal: GitHub -->
+                        <a href="https://github.com/maaryhabad" target="_blank" rel="noopener noreferrer" class="contact-channel-item" aria-label="Acessar perfil do GitHub de Mariana Abad">
+                            <div class="channel-icon-box channel-gold" aria-hidden="true">🐙</div>
+                            <div class="channel-details">
+                                <span class="channel-label">Repositórios GitHub</span>
+                                <span class="channel-value">github.com/maaryhabad</span>
+                            </div>
+                        </a>
+
+                        <!-- Canal: Itch.io -->
+                        <a href="https://maaryhabad.itch.io/" target="_blank" rel="noopener noreferrer" class="contact-channel-item" aria-label="Acessar perfil do Itch.io de Mariana Abad">
+                            <div class="channel-icon-box channel-rose" aria-hidden="true">🎮</div>
+                            <div class="channel-details">
+                                <span class="channel-label">Vitrine de Jogos Itch.io</span>
+                                <span class="channel-value">maaryhabad.itch.io</span>
+                            </div>
+                        </a>
+
+                    </div>
+                </article>
+
+                <!-- Coluna 2: Formulário com Validação Customizada -->
+                <article class="bento-card contact-form-card">
+                    <div class="form-header">
+                        <span class="aside-badge">FORMULÁRIO DE MENSAGEM</span>
+                        <h3 class="form-title">Envie uma Mensagem</h3>
+                        <p class="form-subtitle">Preencha os dados abaixo para iniciar uma conversa.</p>
+                    </div>
+
+                    <form id="contactForm" class="custom-contact-form" novalidate aria-label="Formulário de Contato Direto">
+                        
+                        <!-- Campo Nome -->
+                        <div class="form-group">
+                            <label for="contactName" class="form-label">
+                                Nome Completo <span class="required-star">*</span>
+                            </label>
+                            <input type="text" id="contactName" name="nome" class="form-input" placeholder="Ex: Ana Silva" autocomplete="name" required>
+                            <span class="field-error-msg" id="nameError" role="alert"></span>
+                        </div>
+
+                        <!-- Campo E-mail -->
+                        <div class="form-group">
+                            <label for="contactEmail" class="form-label">
+                                E-mail de Contato <span class="required-star">*</span>
+                            </label>
+                            <input type="email" id="contactEmail" name="email" class="form-input" placeholder="Ex: ana.silva@dominio.com" autocomplete="email" required>
+                            <span class="field-error-msg" id="emailError" role="alert"></span>
+                        </div>
+
+                        <!-- Campo Assunto -->
+                        <div class="form-group">
+                            <label for="contactSubject" class="form-label">
+                                Assunto da Mensagem <span class="required-star">*</span>
+                            </label>
+                            <input type="text" id="contactSubject" name="assunto" class="form-input" placeholder="Ex: Proposta de Parceria / Consultoria" required>
+                            <span class="field-error-msg" id="subjectError" role="alert"></span>
+                        </div>
+
+                        <!-- Campo Mensagem -->
+                        <div class="form-group">
+                            <label for="contactMessage" class="form-label">
+                                Sua Mensagem <span class="required-star">*</span>
+                            </label>
+                            <textarea id="contactMessage" name="mensagem" class="form-textarea" rows="5" placeholder="Olá Mariana, gostaria de conversar sobre..." required></textarea>
+                            <span class="field-error-msg" id="messageError" role="alert"></span>
+                        </div>
+
+                        <!-- Botão de Envio -->
+                        <button type="submit" class="btn-gold-glow" id="submitContactBtn" style="align-self: flex-start;">
+                            <span class="btn-icon">🚀</span>
+                            <span>Enviar Mensagem</span>
+                        </button>
+
+                    </form>
+                </article>
+
+            </div>
+
         </section>
 
     </main>

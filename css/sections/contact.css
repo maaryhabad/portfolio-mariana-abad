@@ -1,0 +1,215 @@
+/* ==========================================================================
+   SEÇÃO: CONTATO & FORMULÁRIO COM VALIDAÇÃO (CSS3 PURO)
+   ========================================================================== */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Card de Informações de Contato */
+.contact-info-card {
+    padding: 2.75rem 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-info-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contact-info-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.contact-info-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.contact-channels-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.contact-channel-item {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    padding: 1.1rem;
+    border-radius: 1.15rem;
+    background: rgba(15, 5, 8, 0.55);
+    border: 1px solid var(--border-glass);
+    transition: var(--transition-smooth);
+}
+
+.contact-channel-item:hover {
+    transform: translateX(4px);
+    background: rgba(26, 10, 16, 0.85);
+    border-color: var(--border-glass-hover);
+}
+
+.channel-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.channel-gold {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.channel-rose {
+    background: rgba(200, 134, 145, 0.15);
+    border: 1px solid rgba(200, 134, 145, 0.3);
+}
+
+.channel-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.channel-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.channel-value {
+    font-size: 0.94rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-all;
+}
+
+/* Card do Formulário */
+.contact-form-card {
+    padding: 2.75rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.form-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.form-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.form-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.custom-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.form-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--rose-gold-light);
+    letter-spacing: 0.03em;
+}
+
+.form-label .required-star {
+    color: var(--gold-primary);
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.95rem 1.15rem;
+    border-radius: 12px;
+    background: rgba(15, 5, 8, 0.75);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: var(--gold-primary);
+    background: rgba(26, 10, 16, 0.95);
+    box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.form-input.is-invalid,
+.form-textarea.is-invalid {
+    border-color: #ff6b7d !important;
+    background: rgba(40, 10, 15, 0.85);
+    box-shadow: 0 0 12px rgba(255, 107, 125, 0.25);
+    animation: inputShake 0.35s ease-in-out;
+}
+
+@keyframes inputShake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-4px); }
+    40%, 80% { transform: translateX(4px); }
+}
+
+.field-error-msg {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: #ff7b89;
+    min-height: 1rem;
+    display: block;
+    transition: var(--transition-smooth);
+}
+
+/* Responsividade do Contato */
+@media (max-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form-card,
+    .contact-info-card {
+        padding: 1.75rem 1.25rem;
+    }
+}
