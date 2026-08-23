@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfólio Pessoal e Currículo Online de Mariana Abad - Desenvolvedora Full-Stack & Software Engineer">
-    <meta name="author" content="Mariana Abad">
-    <title>Mariana Abad | Software Engineer & Portfolio</title>
+    <meta name="description" content="Portfólio Pessoal e Currículo Online de Mariana Beilune Abad - Senior Product Owner & Product-Minded Engineer (Full Stack, Mobile & Games)">
+    <meta name="author" content="Mariana Beilune Abad">
+    <title>Mariana Abad | Software Engineer & Senior Product Owner</title>
     
     <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Folha de Estilos em CSS3 Puro -->
     <link rel="stylesheet" href="css/style.css">
@@ -64,9 +64,145 @@
     <!-- Conteúdo Principal - Single Page com 4 Seções Semânticas -->
     <main class="main-content" id="mainContent">
 
-        <!-- Seção 1: Sobre Mim (Estrutura a ser detalhada no Passo 3) -->
+        <!-- ====================================================================
+             SEÇÃO 1: SOBRE MIM (APRESENTAÇÃO, BIOGRAFIA, HOBBIES E CURRÍCULO)
+             ==================================================================== -->
         <section id="sobre-mim" class="section-container">
-            <!-- Conteúdo construído no Passo 3 -->
+            
+            <!-- Badge de Topo da Seção -->
+            <div class="section-badge-wrapper">
+                <span class="glass-pill-badge">
+                    <span class="status-dot-gold" aria-hidden="true"></span>
+                    <span>SOBRE MIM • PERFIL & TRAJETÓRIA</span>
+                </span>
+            </div>
+
+            <div class="about-grid">
+                
+                <!-- Cartão Principal de Apresentação e Biografia -->
+                <article class="bento-card about-main-card">
+                    <div class="about-header-flex">
+                        
+                        <!-- Elemento Semântico de Imagem / Avatar -->
+                        <figure class="profile-figure">
+                            <div class="avatar-glow-ring">
+                                <div class="avatar-inner-symbol">MA</div>
+                            </div>
+                            <figcaption class="profile-figcaption">
+                                <strong class="profile-full-name">Mariana Beilune Abad</strong>
+                                <span class="profile-role-tag">Sênior PO & Product-Minded Engineer</span>
+                            </figcaption>
+                        </figure>
+
+                        <!-- Título e Introdução de Impacto -->
+                        <div class="about-title-block">
+                            <h1 class="about-hero-title">
+                                Olá! Sou a <span class="gradient-text-gold">Mariana</span>.
+                            </h1>
+                            <p class="about-lead-text">
+                                Mãe da Isa, do Thor e do Simba. Apaixonada por games, música e engenharia de software, unindo pensamento analítico de produto à excelência técnica de ponta a ponta.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- Corpo da Biografia (Texto Autoral com Dados Reais) -->
+                    <div class="about-bio-content">
+                        <p>
+                            Atuo como <strong>Analista Técnica Sênior / Product Owner</strong> no <strong>Instituto de Pesquisas Eldorado</strong>, liderando frentes estratégicas no projeto <em>"TIC em trilhas"</em> em cooperação com o Ministério da Ciência, Tecnologia e Inovação (MCTI). Minha atuação conecta a visão estratégica de negócio à implementação prática, arquitetura de sistemas e sustentação em escala.
+                        </p>
+                        <p>
+                            Graduanda em <strong>Bacharelado em Sistemas de Informação pela UNINTER</strong> e formada pela renomada <strong>Apple Developer Academy</strong>, acumulo sólida vivência em desenvolvimento Full-Stack (JavaScript, SQL, Angular, NestJS), ecossistema Mobile (Swift/iOS) e plataformas educacionais.
+                        </p>
+                        <p>
+                            Com forte vocação pela docência e mentoria, liderei a área pedagógica na pré-aceleradora <strong>9weeklabs</strong> (apoiando mais de 100 startups) e ministro treinamentos técnicos com metodologias ativas e gamificação.
+                        </p>
+                    </div>
+
+                    <!-- Métricas de Impacto em Mini-Cards Bento -->
+                    <div class="about-metrics-grid">
+                        <div class="metric-card">
+                            <span class="metric-number gradient-text-gold">12x</span>
+                            <span class="metric-label">Global Game Jam (10x Org)</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number gradient-text-rose">+100</span>
+                            <span class="metric-label">Startups Mentoradas</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number gradient-text-gold"></span>
+                            <span class="metric-label">Apple Teacher & Academy</span>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-number gradient-text-rose">GDC</span>
+                            <span class="metric-label">Scholarship San Francisco</span>
+                        </div>
+                    </div>
+
+                    <!-- Ação Principal: Download do Currículo em PDF -->
+                    <div class="about-actions-row">
+                        <a href="assets/curriculo.pdf" download="Curriculo-Mariana-Abad.pdf" class="btn-gold-glow" id="downloadCurriculoBtn" aria-label="Baixar Currículo em formato PDF">
+                            <span class="btn-icon">📄</span>
+                            <span>Baixar Currículo (PDF)</span>
+                        </a>
+                        <span class="about-location-tag">📍 Curitiba, Paraná • Brasil</span>
+                    </div>
+
+                </article>
+
+                <!-- Painel Lateral Semântico: Hobbies & Interesses (<aside>) -->
+                <aside class="bento-card hobbies-aside" aria-label="Hobbies e Interesses Pessoais">
+                    
+                    <div class="aside-header">
+                        <span class="aside-badge">INTERESSES & HOBBIES</span>
+                        <h2 class="aside-title">Além do Código</h2>
+                        <p class="aside-subtitle">As paixões que alimentam minha criatividade e pensamento fora da caixa.</p>
+                    </div>
+
+                    <div class="hobbies-list">
+                        
+                        <!-- Item 1: Game Dev & Jams -->
+                        <div class="hobby-item">
+                            <div class="hobby-icon-wrapper hobby-gold">🎮</div>
+                            <div class="hobby-details">
+                                <h3 class="hobby-name">Game Dev & Game Jams</h3>
+                                <p class="hobby-desc">Veterana em Global Game Jams (12 participações), criação de jogos autorais e bolsista internacional na GDC 2019.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2: Música e Trombone -->
+                        <div class="hobby-item">
+                            <div class="hobby-icon-wrapper hobby-rose">🎺</div>
+                            <div class="hobby-details">
+                                <h3 class="hobby-name">Música & Produção Sonora</h3>
+                                <p class="hobby-desc">Formada em Licenciatura em Música com especialização em Tecnologias Sonoro-Musicais e trombonista de orquestra.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3: Startups e Mentoria -->
+                        <div class="hobby-item">
+                            <div class="hobby-icon-wrapper hobby-gold">🚀</div>
+                            <div class="hobby-details">
+                                <h3 class="hobby-name">Empreendedorismo & Docência</h3>
+                                <p class="hobby-desc">Entusiasta de Lean Startup, facilitação ágil (Scrum/Kanban) e formação de novos talentos em tecnologia.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 4: IA & Agentes -->
+                        <div class="hobby-item">
+                            <div class="hobby-icon-wrapper hobby-rose">🤖</div>
+                            <div class="hobby-details">
+                                <h3 class="hobby-name">Inteligência Artificial & Agentes</h3>
+                                <p class="hobby-desc">Estudo contínuo de LLMs, arquiteturas RAG, agentes autônomos e automações de ponta a ponta.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
         </section>
 
         <!-- Seção 2: Formação (Estrutura a ser detalhada no Passo 4) -->

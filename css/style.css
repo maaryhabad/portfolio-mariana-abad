@@ -24,7 +24,7 @@
     --gold-primary: #d4af37;
     --gold-light: #f3df95;
     --gold-dark: #9a7617;
-    --gold-glow: rgba(212, 175, 55, 0.25);
+    --gold-glow: rgba(212, 175, 55, 0.28);
 
     /* Cores de Texto e Contrastes */
     --text-primary: #fdf8f8;
@@ -33,10 +33,10 @@
     
     /* Superfícies de Vidro (Glassmorphism) e Bordas */
     --surface-glass: rgba(26, 10, 16, 0.78);
-    --surface-glass-header: rgba(15, 5, 8, 0.82);
-    --surface-glass-card: rgba(30, 12, 20, 0.85);
+    --surface-glass-header: rgba(15, 5, 8, 0.85);
+    --surface-glass-card: rgba(26, 10, 16, 0.88);
     --border-glass: rgba(232, 180, 188, 0.16);
-    --border-glass-hover: rgba(243, 223, 149, 0.4);
+    --border-glass-hover: rgba(243, 223, 149, 0.35);
     
     /* Gradientes Assinatura */
     --gradient-text-rose: linear-gradient(135deg, #ffffff 0%, #e8b4bc 50%, #c88691 100%);
@@ -45,7 +45,7 @@
     --gradient-gold-btn: linear-gradient(135deg, #f3df95 0%, #d4af37 50%, #aa8010 100%);
 
     /* Sombras e Elevação */
-    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.65);
+    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.7);
     --shadow-glow: 0 0 35px var(--rose-gold-glow);
     --shadow-gold-glow: 0 0 35px var(--gold-glow);
 
@@ -55,6 +55,7 @@
     
     --header-height: 76px;
     --container-max-width: 1240px;
+    --border-radius-card: 1.75rem;
     --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -80,8 +81,9 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     background-image: 
-        radial-gradient(circle at 15% 15%, rgba(122, 35, 55, 0.18) 0%, transparent 40%),
-        radial-gradient(circle at 85% 85%, rgba(212, 175, 55, 0.10) 0%, transparent 45%);
+        radial-gradient(circle at 15% 15%, rgba(122, 35, 55, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 85% 65%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(157, 49, 73, 0.15) 0%, transparent 40%);
     background-attachment: fixed;
 }
 
@@ -106,6 +108,21 @@ button {
     cursor: pointer;
     border: none;
     background: none;
+}
+
+/* Utilitários de Gradientes de Texto */
+.gradient-text-gold {
+    background: var(--gradient-text-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-text-rose {
+    background: var(--gradient-text-rose);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* --------------------------------------------------------------------------
@@ -236,7 +253,7 @@ button {
 
 .nav-link:hover {
     color: var(--text-primary);
-    background: rgba(200, 134, 145, 0.12);
+    background: rgba(200, 134, 145, 0.14);
 }
 
 .nav-link.active {
@@ -286,14 +303,8 @@ button {
 }
 
 @keyframes status-pulse {
-    0% {
-        transform: scale(0.8);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(2.5);
-        opacity: 0;
-    }
+    0% { transform: scale(0.8); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
 }
 
 /* Botão Mobile (Hambúrguer) */
@@ -317,7 +328,7 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   5. CONTAINER & SEÇÕES BASE (ESTRUTURA SINGLE PAGE)
+   5. CONTAINER BASE & CARDS BENTO (GLASSMORPHISM)
    -------------------------------------------------------------------------- */
 .main-content {
     margin-top: var(--header-height);
@@ -328,12 +339,395 @@ button {
     max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 5rem 1.5rem;
-    scroll-margin-top: calc(var(--header-height) + 1rem);
+    scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+/* Badge de Topo de Seções */
+.section-badge-wrapper {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.glass-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+    background: rgba(26, 10, 16, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--rose-gold-light);
+    text-transform: uppercase;
+}
+
+.status-dot-gold {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--gold-primary);
+    box-shadow: 0 0 8px var(--gold-primary);
+}
+
+/* Estilo Base dos Bento Cards */
+.bento-card {
+    background: var(--surface-glass-card);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--border-radius-card);
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.bento-card:hover {
+    border-color: var(--border-glass-hover);
+    box-shadow: var(--shadow-card), 0 0 30px rgba(200, 134, 145, 0.15);
 }
 
 /* --------------------------------------------------------------------------
-   6. RESPONSIVIDADE
+   6. SEÇÃO SOBRE MIM (ESTRUTURA EM GRID, PERFIL, HOBBIES E BOTÃO)
    -------------------------------------------------------------------------- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 1.75rem;
+    align-items: start;
+}
+
+/* Cartão Principal de Apresentação */
+.about-main-card {
+    padding: 2.75rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.about-header-flex {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Figura Semântica e Avatar com Anel Iluminado */
+.profile-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.avatar-glow-ring {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, var(--gold-light), var(--rose-gold), var(--marsala-primary));
+    box-shadow: 0 0 25px var(--gold-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.avatar-glow-ring:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px var(--gold-primary);
+}
+
+.avatar-inner-symbol {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a0b16 0%, #120409 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold-light);
+    letter-spacing: -0.05em;
+    font-family: var(--font-main);
+    border: 2px solid rgba(243, 223, 149, 0.3);
+}
+
+.profile-figcaption {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.profile-full-name {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.profile-role-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--rose-gold);
+    letter-spacing: 0.02em;
+}
+
+/* Título e Texto de Abertura */
+.about-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.about-hero-title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.about-lead-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    font-weight: 400;
+}
+
+/* Texto Biográfico */
+.about-bio-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 1.5rem;
+}
+
+.about-bio-content strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.about-bio-content em {
+    color: var(--rose-gold-light);
+    font-style: italic;
+}
+
+/* Grid de Métricas Bento */
+.about-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.metric-card {
+    background: rgba(15, 5, 8, 0.65);
+    border: 1px solid var(--border-glass);
+    border-radius: 1.15rem;
+    padding: 1.15rem 0.85rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    transition: var(--transition-smooth);
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-glass-hover);
+    background: rgba(26, 10, 16, 0.9);
+}
+
+.metric-number {
+    font-size: 1.6rem;
+    font-weight: 900;
+    font-family: var(--font-mono);
+    line-height: 1;
+}
+
+.metric-label {
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Linha de Ação e Botão de Download */
+.about-actions-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-gold-glow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.95rem 1.85rem;
+    border-radius: 9999px;
+    background: var(--gradient-gold-btn);
+    color: #120409;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 25px var(--gold-glow);
+    transition: var(--transition-smooth);
+}
+
+.btn-gold-glow::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(60deg, transparent 30%, rgba(255, 255, 255, 0.75) 50%, transparent 70%);
+    transform: rotate(30deg) translateX(-100%);
+    transition: transform 0.75s ease;
+}
+
+.btn-gold-glow:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.55), 0 0 70px rgba(232, 180, 188, 0.3);
+}
+
+.btn-gold-glow:hover::after {
+    transform: rotate(30deg) translateX(100%);
+}
+
+.about-location-tag {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   7. PAINEL LATERAL DE HOBBIES (<ASIDE>)
+   -------------------------------------------------------------------------- */
+.hobbies-aside {
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.aside-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.aside-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.aside-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.aside-subtitle {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.hobbies-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+}
+
+.hobby-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.15rem;
+    padding: 1.15rem;
+    border-radius: 1.15rem;
+    background: rgba(15, 5, 8, 0.55);
+    border: 1px solid var(--border-glass);
+    transition: var(--transition-smooth);
+}
+
+.hobby-item:hover {
+    transform: translateX(4px);
+    background: rgba(26, 10, 16, 0.85);
+    border-color: var(--border-glass-hover);
+}
+
+.hobby-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+}
+
+.hobby-gold {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.hobby-rose {
+    background: rgba(200, 134, 145, 0.15);
+    border: 1px solid rgba(200, 134, 145, 0.3);
+}
+
+.hobby-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.hobby-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.hobby-desc {
+    font-size: 0.83rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   8. RESPONSIVIDADE (MEDIA QUERIES)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 900px) {
     .status-badge {
         display: none;
@@ -375,5 +769,29 @@ button {
         display: block;
         text-align: center;
         padding: 0.75rem 1rem;
+    }
+
+    .about-header-flex {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .about-main-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .about-metrics-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .about-actions-row {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .btn-gold-glow {
+        justify-content: center;
     }
 }
