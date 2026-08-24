@@ -1,107 +1,123 @@
 # Portfólio Pessoal & Currículo Online — Mariana Abad
 
 > **Atividade Prática – Fundamentos da Programação Web (UNINTER)**  
-> **Desenvolvedora:** Mariana Abad  
-> **Hospedagem (GitHub Pages):** [https://maaryhabad.github.io/portfolio-mariana-abad/](https://maaryhabad.github.io/portfolio-mariana-abad/)  
-> **Repositório GitHub:** [https://github.com/maaryhabad/portfolio-mariana-abad](https://github.com/maaryhabad/portfolio-mariana-abad)
+> **Desenvolvedora:** Mariana Beilune Abad  
+> **Perfil Profissional:** Senior Product Owner no Instituto Eldorado & Engenheira de Software (Apple Developer Academy)  
+> **Deploy GitHub Pages:** [https://maaryhabad.github.io/portfolio-mariana-abad/](https://maaryhabad.github.io/portfolio-mariana-abad/)  
+> **Repositório GitHub:** [https://github.com/maaryhabad/portfolio-mariana-abad](https://github.com/maaryhabad/portfolio-mariana-abad)  
 
 ---
 
 ## 🌟 Visão Geral do Projeto
 
-Este projeto consiste em um **Portfólio Pessoal (Currículo Online)** moderno, responsivo e de alta fidelidade visual, construído no modelo **Single Page Website com navegação por âncoras (`#id`)**.
+Este projeto consiste no **Portfólio Pessoal e Currículo Online** de alta fidelidade visual de **Mariana Beilune Abad**, construído como uma aplicação *Single Page Web* com navegação fluida por âncoras (`#id`).
 
-O desenvolvimento é orientado pela metodologia de **Desenvolvimento Baseado em Especificações (Spec-Driven Development — SDD)** de forma incremental, aplicando princípios de **Clean Code**, **Design System nativo** e conformidade absoluta com as diretrizes acadêmicas: **100% Vanilla (HTML5 semântico, CSS3 puro e JavaScript ES6+ assíncrono)**, sem o uso de qualquer framework ou biblioteca externa (como Bootstrap, Tailwind, React, Vue, jQuery, etc.).
+Desenvolvido sob o rigor da metodologia **Spec-Driven Development (SDD)** e princípios de **Clean Code**, o projeto utiliza exclusivamente **tecnologias web nativas (HTML5 Semântico, CSS3 Moderno e JavaScript Vanilla ES6+)**, combinado com um **fundo 3D em Three.js** com renderização WebGL, efeitos de *Unreal Bloom*, poeira estelar orbital kepleriana (25.000 partículas) e scrollytelling na paleta nobre **Marsala, Rosé Gold e Dourado Imperial**.
 
 ---
 
 ## 🎨 Identidade Visual & Paleta Cromática
 
-A identidade visual do portfólio une a elegância do **Marsala**, a sofisticação calorosa do **Rosé Gold** e o requinte do **Dourado**, combinando técnicas avançadas de *glassmorphism* (`backdrop-filter`), iluminação radial, contrastes apurados e alternância fluida entre **Dark Mode** e **Light Mode**:
+A identidade visual foi construída com base em harmonia estética, elegância executiva e técnicas avançadas de *glassmorphism* (`backdrop-filter`), com suporte bidirecional a **Dark Mode** e **Light Mode**:
 
-| Elemento / Camada | Tom / Hexadecimal | Aplicação Principal |
-|---|---|---|
-| **Marsala Dark Base** | `#0f0508` / `#1a0a10` | Fundo principal da aplicação e contraste de profundidade |
-| **Marsala Acento** | `#7a2337` / `#581827` | Superfícies secundárias, cabeçalhos e tons de destaque |
-| **Rosé Gold Primário** | `#c88691` / `#e8b4bc` | Bordas translúcidas de vidro, gradientes de texto e títulos |
-| **Dourado Imperial** | `#d4af37` / `#f3df95` | Ações principais, badges de status, botões interativos e ícones |
-| **Vidro Glassmorphism** | `rgba(26, 10, 16, 0.85)` | Bento cards, menus flutuantes (HUD) e modais |
+| Token / Elemento | Hexadecimal Dark | Hexadecimal Light | Aplicação Principal |
+|---|---|---|---|
+| **Fundo Primário** | `#0a0305` | `#fbf5f6` | Pano de fundo geral da página |
+| **Marsala Nobre** | `#8b263e` / `#4a101e` | `#7a1d32` / `#4a0f1e` | Superfícies ativas, cabeçalhos e ênfases |
+| **Rosé Gold** | `#c88691` / `#e8b4bc` | `#8c3f4e` / `#ab5b6a` | Bordas translúcidas, badges e gradientes |
+| **Dourado Imperial** | `#d4af37` / `#f3df95` | `#a67c00` / `#806000` | Botões primários, ícones luminosos e badges |
+| **Superfície Vidro** | `rgba(22, 7, 12, 0.88)` | `rgba(255, 255, 255, 0.95)` | Bento cards, header HUD e modal |
 
 ---
 
 ## 🚀 Tecnologias e Diretrizes de Engenharia
 
-- **HTML5 Semântico:** Estruturação rica e acessível utilizando tags como `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<figure>`, `<figcaption>` e `<footer>`.
-- **CSS3 Puro & Moderno:** Design System autoral com variáveis CSS (`:root`), Flexbox, CSS Grid (`repeat(auto-fit, minmax(...))`), Glassmorphism, Neumorphism sutil, transições fluidas e responsividade via Mobile-First / Media Queries.
-- **JavaScript (ES6+) Vanilla:** Programação assíncrona com `async/await` e `fetch API` para integrações dinâmicas (GitHub API, Medium Feed), validações com Expressões Regulares (Regex), manipulação declarativa do DOM, Scroll Spy e persistência no `localStorage`.
-- **Versionamento & Git:** Fluxo de commits atômicos estruturados sob o padrão *Conventional Commits*.
-- **Hospedagem & Deploy:** GitHub Pages com integração contínua a partir da branch principal (`main`).
+- **HTML5 Semântico Puro:** Estrutura acessível com `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<figure>`, `<figcaption>` e `<footer>`.
+- **CSS3 Moderno & Modular:** Design tokens em `:root` e `[data-theme="light"]`, CSS Grid dinâmico, Flexbox, Glassmorphism e responsividade fluida via Media Queries.
+- **JavaScript Vanilla (ES6+ Modules):** Arquitetura desacoplada em módulos (`/js/modules/`), programação assíncrona (`async/await`, `fetch API`), validação de formulários com Expressões Regulares (Regex) e persistência em `localStorage`.
+- **Motor Gráfico 3D (Three.js WebGL):** Universo cósmico com horizonte de eventos, corona de fótons, disco de acreção procedural, lente gravitacional e animação cinemática de singularidade no envio de mensagens.
 
 ---
 
-## 📂 Estrutura de Pastas e Arquivos
+## 📂 Arquitetura de Pastas e Arquivos
 
 ```text
 portfolio-mariana-abad/
-│
-├── index.html              # Ponto de entrada Single Page com todas as seções semânticas
-├── README.md               # Documentação técnica e visão geral do projeto
-├── modelo.html             # Arquivo base/inspiração de layout e design tokens
-│
-├── css/
-│   └── style.css           # Folha de estilo em CSS3 puro (Design Tokens, Grid, Glassmorphism, Paleta Marsala/Rosé/Gold)
-│
-├── js/
-│   └── script.js           # Lógica JavaScript pura (APIs, Validação Regex, Modais, Dark Mode, ScrollSpy)
-│
+├── index.html                   # Estrutura semântica principal
+├── README.md                    # Documentação consolidada do projeto
 ├── assets/
-│   ├── curriculo.pdf       # Currículo em PDF disponível para download
-│   └── img/                # Imagens otimizadas, avatares e ícones vetoriais
-│
+│   └── curriculo.pdf            # Currículo oficial em PDF para download
+├── css/
+│   ├── style.css                # Ponto de entrada modular (@import)
+│   ├── base/
+│   │   ├── variables.css        # Design tokens e variáveis de tema
+│   │   └── globals.css          # Tipografia, resets e layout global
+│   ├── components/
+│   │   ├── header.css           # HUD Header, scroll progress e mobile drawer
+│   │   ├── buttons.css          # Botões Apple shimmer e pills de vidro
+│   │   └── modal.css            # Modal glassmorphism de confirmação
+│   └── sections/
+│       ├── about.css            # Hero, Story Steps e 4 Pilares Além do Código
+│       ├── education.css        # Timeline vertical, idiomas e certificações
+│       ├── portfolio.css        # Sistema de abas e grid de projetos
+│       └── contact.css          # Formulário de contato com validação
+├── js/
+│   ├── script.js                # Orquestrador de carregamento ES6
+│   └── modules/
+│       ├── theme.js             # Gerenciador de Dark/Light mode com localStorage
+│       ├── header.js            # Controle do scroll progress e menu mobile
+│       ├── scrollspy.js         # Scroll spy dinâmico de alta performance
+│       ├── planet3d.js          # Motor 3D Three.js com Singularidade/Supernova
+│       ├── spotlight.js         # Efeito radial cursor spotlight nos cards
+│       ├── reveal.js            # Animações de entrada com IntersectionObserver
+│       ├── portfolio-tabs.js    # Controle de alternância de abas do portfólio
+│       ├── github.js            # Integração assíncrona com GitHub API
+│       ├── medium.js            # Integração assíncrona com Medium RSS
+│       ├── itchio.js            # Vitrine do catálogo de jogos autorais
+│       ├── contact.js           # Validador de formulário com Regex
+│       └── modal.js             # Gerenciador do modal de confirmação
 └── docs/
-    └── sdd/                # Especificações Técnicas Incrementais (Spec-Driven Development)
-        ├── passo-1.md      # Setup do Repositório, README.md e SDD (Paleta Marsala/Rosé Gold/Gold)
-        ├── passo-2.md      # Menu de Navegação Fixo (Sticky Glass Header)
-        ├── passo-3.md      # Seção "Sobre Mim", Hobbies e Download PDF
-        ├── passo-4.md      # Seção "Formação" com Timeline CSS pura
-        ├── passo-5.md      # Seção "Portfólio" com CSS Grid e Abas
-        ├── passo-6.md      # Integração Dinâmica com GitHub API
-        ├── passo-7.md      # Integração Dinâmica de Artigos do Medium
-        ├── passo-8.md      # Embeds Responsivos do Itch.io
-        ├── passo-9.md      # Seção "Contato" e Validação com Regex
-        ├── passo-10.md     # Modal Customizado de Feedback de Envio
-        ├── passo-11.md     # Tema Dinâmico Claro/Escuro com LocalStorage
-        ├── passo-12.md     # Scroll Spy e Menu Mobile Hambúrguer
-        └── passo-13.md     # Relatório Final de Entrega e Auditoria
+    └── sdd/                     # Especificações Técnicas Incrementais (SDD)
+        ├── passo-01.md          # Setup e Arquitetura Inicial
+        ├── passo-02.md          # Header Fixo HUD e Glassmorphism
+        ├── passo-03.md          # Seção Sobre Mim e Biografia
+        ├── passo-04.md          # Seção Formação com Timeline CSS
+        ├── passo-05.md          # Seção Portfólio e Sistema de Abas
+        ├── passo-06.md          # Integração GitHub REST API
+        ├── passo-07.md          # Integração Medium RSS API
+        ├── passo-08.md          # Vitrine de Jogos Itch.io
+        ├── passo-09.md          # Formulário de Contato e Validação Regex
+        ├── passo-10.md          # Modal Customizado de Feedback
+        ├── passo-11.md          # Alternador de Tema Claro/Escuro
+        ├── passo-12.md          # Scroll Spy e Menu Mobile Hambúrguer
+        └── passo-13.md          # Consolidação Final e Revisão
 ```
 
 ---
 
-## 🧭 Roteiro de Especificações (Spec-Driven Development - SDD)
-
-A evolução deste projeto é conduzida passo a passo através de especificações técnicas detalhadas:
+## 🧭 Roteiro de Desenvolvimento (Spec-Driven Development)
 
 | Passo | Especificação Técnica | Status |
 |---|---|---|
-| **01** | [Setup do Repositório, README e SDD](docs/sdd/passo-1.md) | ✅ Concluído |
-| **02** | [Menu de Navegação Fixo (Sticky Header)](docs/sdd/passo-2.md) | ⏳ A Iniciar |
-| **03** | [Seção Sobre Mim, Hobbies e Download PDF](docs/sdd/passo-3.md) | ⏳ A Iniciar |
-| **04** | [Seção Formação com Timeline CSS Pura](docs/sdd/passo-4.md) | ⏳ A Iniciar |
-| **05** | [Seção Portfólio com CSS Grid e Abas](docs/sdd/passo-5.md) | ⏳ A Iniciar |
-| **06** | [Integração com API REST Pública do GitHub](docs/sdd/passo-6.md) | ⏳ A Iniciar |
-| **07** | [Integração de Posts do Medium via JS Assíncrono](docs/sdd/passo-7.md) | ⏳ A Iniciar |
-| **08** | [Embeds e Projetos do Itch.io](docs/sdd/passo-8.md) | ⏳ A Iniciar |
-| **09** | [Formulário de Contato com Validação Regex](docs/sdd/passo-9.md) | ⏳ A Iniciar |
-| **10** | [Modal de Confirmação e Feedback Visual](docs/sdd/passo-10.md) | ⏳ A Iniciar |
-| **11** | [Alternador de Tema Claro/Escuro (Dark Mode)](docs/sdd/passo-11.md) | ⏳ A Iniciar |
-| **12** | [Scroll Spy e Menu Mobile Responsivo](docs/sdd/passo-12.md) | ⏳ A Iniciar |
-| **13** | [Consolidação, Revisão Final e Auditoria](docs/sdd/passo-13.md) | ⏳ A Iniciar |
+| **01** | [Setup do Repositório, README e Estrutura](docs/sdd/passo-01.md) | ✅ Concluído |
+| **02** | [Menu de Navegação Fixo (Sticky HUD Header)](docs/sdd/passo-02.md) | ✅ Concluído |
+| **03** | [Seção Sobre Mim, Biografia e Download PDF](docs/sdd/passo-03.md) | ✅ Concluído |
+| **04** | [Seção Formação com Timeline CSS Pura](docs/sdd/passo-04.md) | ✅ Concluído |
+| **05** | [Seção Portfólio com CSS Grid e Abas WAI-ARIA](docs/sdd/passo-05.md) | ✅ Concluído |
+| **06** | [Integração Dinâmica com GitHub REST API](docs/sdd/passo-06.md) | ✅ Concluído |
+| **07** | [Integração de Posts do Medium via JS Assíncrono](docs/sdd/passo-07.md) | ✅ Concluído |
+| **08** | [Vitrine Autoral do Catálogo Itch.io](docs/sdd/passo-08.md) | ✅ Concluído |
+| **09** | [Formulário de Contato com Validação por Regex](docs/sdd/passo-09.md) | ✅ Concluído |
+| **10** | [Modal Customizado de Feedback Visual](docs/sdd/passo-10.md) | ✅ Concluído |
+| **11** | [Alternador de Tema Dinâmico (Dark / Light Mode)](docs/sdd/passo-11.md) | ✅ Concluído |
+| **12** | [Scroll Spy e Menu Mobile Hambúrguer](docs/sdd/passo-12.md) | ✅ Concluído |
+| **13** | [Consolidação Final e Auditoria Acadêmica](docs/sdd/passo-13.md) | ✅ Concluído |
 
 ---
 
-## 💻 Instruções de Execução Local
+## ⚡ Como Executar o Projeto Localmente
 
-Como o projeto é construído em tecnologia puramente nativa (**Vanilla**), não há dependências de build (`npm install`, `webpack`, `vite`, etc.).
+Por se tratar de uma aplicação construída com módulos ES6 nativos (`type="module"`), execute através de um servidor HTTP local:
 
 1. **Clone o repositório:**
    ```bash
@@ -109,19 +125,24 @@ Como o projeto é construído em tecnologia puramente nativa (**Vanilla**), não
    cd portfolio-mariana-abad
    ```
 
-2. **Abra no navegador:**
-   - Basta abrir o arquivo `index.html` diretamente em qualquer navegador moderno, ou
-   - Utilizar a extensão **Live Server** no Visual Studio Code para recarregamento automático em desenvolvimento local.
+2. **Inicie um servidor local:**
+   - **Com Python 3:**
+     ```bash
+     python -m http.server 3000
+     ```
+   - **Com Node.js (`npx serve` ou `http-server`):**
+     ```bash
+     npx serve .
+     ```
+   - **Com VS Code:**
+     Clique com botão direito em `index.html` e selecione *Open with Live Server*.
+
+3. **Acesse no navegador:**
+   Abra `http://localhost:3000` ou a porta indicada.
 
 ---
 
-## 🌐 Publicação (Deploy no GitHub Pages)
+## 📜 Licença e Direitos Autorais
 
-1. No repositório no GitHub, acesse **Settings > Pages**.
-2. Na seção **Build and deployment**, selecione a branch `main` e o diretório `/ (root)`.
-3. Clique em **Save**. Em instantes, o site estará publicado e acessível publicamente.
-
----
-
-## 📄 Licença e Autoria
-Desenvolvido por **Mariana Abad** como projeto prático acadêmico da disciplina de Fundamentos da Programação Web — UNINTER.
+Desenvolvido por **Mariana Beilune Abad** como Atividade Prática do Centro Universitário Internacional (UNINTER).  
+Distribuído sob a Licença MIT.
