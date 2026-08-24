@@ -1,22 +1,25 @@
 /* ==========================================================================
-   SEÇÃO: HERO & SOBRE MIM (ESTRUTURA SCROLLYTELLING & BENTO DO MODELO.HTML)
+   SEÇÃO: HERO, SCROLLYTELLING & PILARES ALÉM DO CÓDIGO (1:1 COM MODELO.HTML)
    ========================================================================== */
 
-/* 1. HERO SECTION (100VH IMPACTANTE) */
+/* 1. HERO SECTION */
 .hero-section {
-    min-height: 90vh;
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
     position: relative;
-    padding: 4rem 1.5rem 6rem;
+    padding: 0 clamp(1.5rem, 6vw, 6rem);
     max-width: var(--container-max-width);
     margin: 0 auto;
 }
 
 .hero-content {
-    max-width: 860px;
+    max-width: 580px;
     z-index: 10;
+    position: relative;
 }
 
 .hero-badge-row {
@@ -25,24 +28,33 @@
 
 .hero-title {
     margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 40px rgba(0, 0, 0, 0.9));
 }
 
 .hero-subtitle {
     font-size: clamp(1.8rem, 4vw, 3.2rem);
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text-primary);
     letter-spacing: -0.03em;
     line-height: 1.2;
     margin-bottom: 1.75rem;
+    filter: drop-shadow(0 3px 14px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 30px rgba(0, 0, 0, 0.85));
 }
 
 .hero-lead-text {
-    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
     color: var(--text-secondary);
     line-height: 1.7;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 2.5rem;
-    max-width: 720px;
+    max-width: 540px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 0, 0, 0.9);
+}
+
+[data-theme="light"] .hero-lead-text {
+    color: var(--text-primary);
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+    font-weight: 500;
 }
 
 .hero-cta-row {
@@ -58,11 +70,12 @@
     color: var(--text-muted);
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .hero-scroll-down {
     position: absolute;
-    bottom: 2rem;
+    bottom: 2.5rem;
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.2rem;
@@ -77,21 +90,36 @@
     60% { transform: translate(-50%, -5px); }
 }
 
-/* 2. DESTAQUES ESTRATÉGICOS (STORY STEPS EM BENTO CARDS) */
-.story-steps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
-    margin-bottom: 4.5rem;
+/* 2. SCROLLING STORY FLOW: 3 SEÇÕES NATURAIS DEDICADAS (STEPS 1, 2, 3 EM 100VH) */
+.story-step-section {
+    min-height: 100vh;
+    padding: 7rem clamp(1.5rem, 6vw, 6rem);
+    display: flex;
+    align-items: center;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
 }
 
-.story-step-card {
-    padding: 2.25rem 2rem;
+.story-step-card-full {
+    max-width: 620px;
+    width: 100%;
+    padding: 2.75rem 2.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 320px;
-    gap: 1.25rem;
+    gap: 1.5rem;
+    border-radius: var(--border-radius-card);
+    background: var(--surface-glass-card);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-card);
+}
+
+[data-theme="light"] .story-step-card-full {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(140, 63, 78, 0.25);
 }
 
 .step-card-header {
@@ -106,62 +134,203 @@
 }
 
 .step-card-title {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
     color: var(--text-primary);
-    letter-spacing: -0.02em;
-    line-height: 1.25;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
 }
 
 .step-card-desc {
-    font-size: 0.92rem;
+    font-size: 1.05rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.65;
+    font-weight: 400;
+}
+
+.step-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
 }
 
 .step-stat-pill {
-    padding: 0.75rem 1rem;
-    border-radius: 14px;
-    background: rgba(15, 5, 8, 0.65);
+    padding: 1.15rem 1.25rem;
+    border-radius: 16px;
+    background: var(--surface-pill);
     border: 1px solid var(--border-glass);
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+[data-theme="light"] .step-stat-pill {
+    background: #faf2f4;
+    border-color: rgba(140, 63, 78, 0.2);
 }
 
 .step-stat-number {
-    font-size: 1.45rem;
+    font-size: 1.8rem;
     font-weight: 900;
     font-family: var(--font-mono);
     color: var(--gold-light);
+    line-height: 1;
+}
+
+[data-theme="light"] .step-stat-number {
+    color: var(--marsala-primary);
 }
 
 .step-stat-label {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
     text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
-/* 3. GRID BIOGRÁFICA E HOBBIES */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 1.75rem;
-    align-items: start;
+[data-theme="light"] .step-stat-label {
+    color: var(--text-secondary);
+    font-weight: 600;
 }
 
-.about-main-card {
-    padding: 2.75rem 2.5rem;
+/* 3. SEÇÃO 4 PILARES: ALÉM DO CÓDIGO (IDÊNTICO À SEÇÃO VERO DNA DO MODELO.HTML) */
+.hobbies-section-full {
+    min-height: 100vh;
+    padding: 8rem 1.5rem;
+    max-width: 1360px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.hobbies-header-block {
+    text-align: center;
+    margin-bottom: 4.5rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    align-items: center;
+}
+
+.hobbies-icon-badge {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(122, 35, 55, 0.6) 0%, rgba(26, 10, 16, 0.9) 100%);
+    border: 1px solid rgba(243, 223, 149, 0.45);
+    box-shadow: 0 0 45px rgba(212, 175, 55, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    transition: var(--transition-smooth);
+}
+
+.hobbies-icon-badge:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 0 60px rgba(212, 175, 55, 0.6);
+}
+
+.hobbies-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.hobby-pillar-card {
+    height: 380px;
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: var(--border-radius-card);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+[data-theme="light"] .hobby-pillar-card {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(140, 63, 78, 0.25);
+}
+
+.hobby-pillar-card:hover {
+    transform: translateY(-8px);
+}
+
+.pillar-icon-box {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    transition: var(--transition-smooth);
+}
+
+.pillar-gold {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.pillar-rose {
+    background: rgba(200, 134, 145, 0.15);
+    border: 1px solid rgba(200, 134, 145, 0.35);
+}
+
+.hobby-pillar-card:hover .pillar-icon-box {
+    transform: scale(1.15) rotate(8deg);
+}
+
+.pillar-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.pillar-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.pillar-footer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--gold-light);
+    font-weight: 700;
+}
+
+[data-theme="light"] .pillar-footer {
+    color: var(--marsala-primary);
+}
+
+/* 4. BIOGRAFIA HERO CARD */
+.about-hero-card-full {
+    padding: 3.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+[data-theme="light"] .about-hero-card-full {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(140, 63, 78, 0.25);
 }
 
 .about-header-flex {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .profile-figure {
@@ -173,12 +342,12 @@
 }
 
 .avatar-glow-ring {
-    width: 110px;
-    height: 110px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     padding: 3px;
     background: linear-gradient(135deg, var(--gold-light), var(--rose-gold), var(--marsala-primary));
-    box-shadow: 0 0 30px var(--gold-glow);
+    box-shadow: 0 0 35px var(--gold-glow);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,7 +356,7 @@
 
 .avatar-glow-ring:hover {
     transform: scale(1.06);
-    box-shadow: 0 0 45px var(--gold-primary);
+    box-shadow: 0 0 50px var(--gold-primary);
 }
 
 .avatar-inner-symbol {
@@ -198,30 +367,29 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 900;
     color: var(--gold-light);
     letter-spacing: -0.05em;
-    font-family: var(--font-main);
     border: 2px solid rgba(243, 223, 149, 0.35);
 }
 
 .profile-figcaption {
-    margin-top: 0.75rem;
+    margin-top: 0.85rem;
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
 }
 
 .profile-full-name {
-    font-size: 0.98rem;
+    font-size: 1.05rem;
     color: var(--text-primary);
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .profile-role-tag {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     color: var(--rose-gold);
     letter-spacing: 0.02em;
 }
@@ -233,33 +401,33 @@
 }
 
 .about-hero-title {
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
     font-weight: 900;
     letter-spacing: -0.03em;
     line-height: 1.1;
 }
 
 .about-lead-text {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-secondary);
-    line-height: 1.55;
+    line-height: 1.6;
     font-weight: 400;
 }
 
 .about-bio-content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    font-size: 0.98rem;
+    gap: 1.15rem;
+    font-size: 1.02rem;
     color: var(--text-secondary);
-    line-height: 1.7;
+    line-height: 1.75;
     border-top: 1px solid var(--border-glass);
-    padding-top: 1.5rem;
+    padding-top: 2rem;
 }
 
 .about-bio-content strong {
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .about-bio-content em {
@@ -267,43 +435,67 @@
     font-style: italic;
 }
 
+[data-theme="light"] .about-bio-content em {
+    color: var(--marsala-primary);
+}
+
+/* Mini Cards Bento de Métricas */
 .about-metrics-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .metric-card {
-    background: rgba(15, 5, 8, 0.65);
+    background: var(--surface-pill);
     border: 1px solid var(--border-glass);
-    border-radius: 1.15rem;
-    padding: 1.15rem 0.85rem;
+    border-radius: 1.25rem;
+    padding: 1.35rem 1rem;
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
     transition: var(--transition-smooth);
 }
 
 .metric-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     border-color: var(--border-glass-hover);
-    background: rgba(26, 10, 16, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .metric-card {
+    background: #ffffff;
+    border: 1px solid rgba(140, 63, 78, 0.25);
+    box-shadow: 0 4px 15px rgba(74, 15, 30, 0.08);
 }
 
 .metric-number {
-    font-size: 1.6rem;
+    font-size: 1.85rem;
     font-weight: 900;
     font-family: var(--font-mono);
     line-height: 1;
+    color: var(--gold-light);
+}
+
+[data-theme="light"] .metric-number {
+    color: var(--marsala-primary);
 }
 
 .metric-label {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-family: var(--font-mono);
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    line-height: 1.3;
+}
+
+[data-theme="light"] .metric-label {
+    color: var(--text-secondary);
+    font-weight: 600;
 }
 
 .about-actions-row {
@@ -312,121 +504,20 @@
     justify-content: space-between;
     gap: 1.5rem;
     border-top: 1px solid var(--border-glass);
-    padding-top: 1.5rem;
+    padding-top: 2rem;
     flex-wrap: wrap;
 }
 
 .about-location-tag {
     font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
 }
 
-/* Painel Lateral de Hobbies (<aside>) */
-.hobbies-aside {
-    padding: 2.25rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
-}
-
-.aside-header {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-
-.aside-badge {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--gold-light);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.aside-title {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
-}
-
-.aside-subtitle {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-}
-
-.hobbies-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.15rem;
-}
-
-.hobby-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.15rem;
-    padding: 1.15rem;
-    border-radius: 1.15rem;
-    background: rgba(15, 5, 8, 0.55);
-    border: 1px solid var(--border-glass);
-    transition: var(--transition-smooth);
-}
-
-.hobby-item:hover {
-    transform: translateX(4px);
-    background: rgba(26, 10, 16, 0.85);
-    border-color: var(--border-glass-hover);
-}
-
-.hobby-icon-wrapper {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.35rem;
-    flex-shrink: 0;
-}
-
-.hobby-gold {
-    background: rgba(212, 175, 55, 0.15);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-}
-
-.hobby-rose {
-    background: rgba(200, 134, 145, 0.15);
-    border: 1px solid rgba(200, 134, 145, 0.3);
-}
-
-.hobby-details {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.hobby-name {
-    font-size: 0.98rem;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.hobby-desc {
-    font-size: 0.83rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-}
-
-/* Responsividade da Seção */
+/* Responsividade Geral */
 @media (max-width: 1024px) {
-    .story-steps-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
+    .hobbies-pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .about-metrics-grid {
@@ -435,9 +526,23 @@
 }
 
 @media (max-width: 768px) {
-    .hero-section {
-        min-height: auto;
-        padding-top: 2rem;
+    .hero-section,
+    .story-step-section,
+    .hobbies-section-full {
+        padding: 5rem 1.5rem;
+    }
+
+    .hobbies-pillars-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hobby-pillar-card {
+        height: auto;
+        gap: 1.5rem;
+    }
+
+    .step-stats-grid {
+        grid-template-columns: 1fr;
     }
 
     .about-header-flex {
@@ -446,8 +551,8 @@
         gap: 1.5rem;
     }
 
-    .about-main-card {
-        padding: 1.75rem 1.25rem;
+    .about-hero-card-full {
+        padding: 2rem 1.5rem;
     }
 
     .about-actions-row {
