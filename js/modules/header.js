@@ -1,7 +1,7 @@
 /**
  * ==============================================================================
  * MÓDULO: CABEÇALHO & PROGRESSO DE ROLAGEM (HeaderModule)
- * Responsabilidade Única: Controle da barra de rolagem e do menu mobile
+ * Responsabilidade Única: Controle da barra de rolagem, menu mobile e acessibilidade
  * ==============================================================================
  */
 
@@ -36,17 +36,51 @@ export const HeaderModule = (() => {
     };
 
     /**
+     * Fecha o menu móvel
+     */
+    const closeMobileMenu = () => {
+        if (navMenu && navMenu.classList.contains('is-open')) {
+            navMenu.classList.remove('is-open');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.innerHTML = '☰';
+            }
+        }
+    };
+
+    /**
      * Fecha o menu móvel ao clicar em qualquer link de âncora
      */
     const setupNavLinkAutoClose = () => {
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navMenu && navMenu.classList.contains('is-open')) {
-                    toggleMobileMenu();
-                }
-            });
+            link.addEventListener('click', closeMobileMenu);
         });
+    };
+
+    /**
+     * Fecha o menu móvel ao clicar fora dele ou ao pressionar Escape
+     */
+    const setupOutsideAndKeyboardClose = () => {
+        document.addEventListener('click', (e) => {
+            if (navMenu && navMenu.classList.contains('is-open')) {
+                if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    closeMobileMenu();
+                }
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 868) {
+                closeMobileMenu();
+            }
+        }, { passive: true });
     };
 
     /**
@@ -60,9 +94,11 @@ export const HeaderModule = (() => {
         }
 
         setupNavLinkAutoClose();
+        setupOutsideAndKeyboardClose();
     };
 
     return {
-        init
+        init,
+        closeMobileMenu
     };
 })();

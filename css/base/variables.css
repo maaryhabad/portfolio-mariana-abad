@@ -5,13 +5,13 @@
 
 :root {
     /* Paleta Principal Dark: Marsala, Rosé Gold e Dourado Imperial */
-    --bg-primary: #0f0508;
-    --bg-secondary: #1a0a10;
-    --bg-tertiary: #270f19;
+    --bg-primary: #0a0305;
+    --bg-secondary: #16070c;
+    --bg-tertiary: #220b14;
     
-    --marsala-primary: #7a2337;
-    --marsala-light: #9d3149;
-    --marsala-dark: #420f1b;
+    --marsala-primary: #8b263e;
+    --marsala-light: #ab3a53;
+    --marsala-dark: #4a101e;
     
     --rose-gold: #c88691;
     --rose-gold-light: #e8b4bc;
@@ -23,26 +23,27 @@
     --gold-glow: rgba(212, 175, 55, 0.28);
 
     /* Cores de Texto e Contrastes Dark */
-    --text-primary: #fdf8f8;
-    --text-secondary: #c5a9b2;
-    --text-muted: #8e6d77;
+    --text-primary: #ffffff;
+    --text-secondary: #e2cad0;
+    --text-muted: #a3828c;
     
     /* Superfícies de Vidro (Glassmorphism) e Bordas */
-    --surface-glass: rgba(26, 10, 16, 0.78);
-    --surface-glass-header: rgba(15, 5, 8, 0.85);
-    --surface-glass-card: rgba(26, 10, 16, 0.88);
-    --border-glass: rgba(232, 180, 188, 0.16);
-    --border-glass-hover: rgba(243, 223, 149, 0.35);
+    --surface-glass: rgba(22, 7, 12, 0.85);
+    --surface-glass-header: rgba(10, 3, 5, 0.88);
+    --surface-glass-card: rgba(22, 7, 12, 0.88);
+    --surface-pill: rgba(15, 5, 8, 0.85);
+    --border-glass: rgba(232, 180, 188, 0.18);
+    --border-glass-hover: rgba(243, 223, 149, 0.45);
     
     /* Gradientes Assinatura */
-    --gradient-text-rose: linear-gradient(135deg, #ffffff 0%, #e8b4bc 50%, #c88691 100%);
-    --gradient-text-gold: linear-gradient(135deg, #f3df95 0%, #d4af37 50%, #b8860b 100%);
-    --gradient-accent: linear-gradient(135deg, #9d3149 0%, #c88691 50%, #d4af37 100%);
+    --gradient-text-rose: linear-gradient(135deg, #ffffff 0%, #f3df95 40%, #e8b4bc 100%);
+    --gradient-text-gold: linear-gradient(135deg, #fff2b2 0%, #f3df95 50%, #d4af37 100%);
+    --gradient-accent: linear-gradient(135deg, #ab3a53 0%, #c88691 50%, #d4af37 100%);
     --gradient-gold-btn: linear-gradient(135deg, #f3df95 0%, #d4af37 50%, #aa8010 100%);
     --gradient-timeline-line: linear-gradient(to bottom, var(--gold-primary), var(--rose-gold), var(--marsala-primary));
 
     /* Sombras e Elevação */
-    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.7);
+    --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.85);
     --shadow-glow: 0 0 35px var(--rose-gold-glow);
     --shadow-gold-glow: 0 0 35px var(--gold-glow);
 
@@ -57,45 +58,46 @@
 }
 
 /* ==========================================================================
-   TEMA CLARO (LIGHT MODE): ALABASTER ROSÉ & MARSALA NOBRE
+   TEMA CLARO (LIGHT MODE): ALABASTER ROSÉ & MARSALA NOBRE COM ALTO CONTRASTE
    ========================================================================== */
 [data-theme="light"] {
     --bg-primary: #fbf5f6;
     --bg-secondary: #f4eaec;
     --bg-tertiary: #ede0e3;
     
-    --marsala-primary: #8b263e;
-    --marsala-light: #ab3a53;
-    --marsala-dark: #581827;
+    --marsala-primary: #7a1d32;
+    --marsala-light: #9d2b45;
+    --marsala-dark: #4a0f1e;
     
-    --rose-gold: #a65863;
-    --rose-gold-light: #c88691;
-    --rose-gold-glow: rgba(166, 88, 99, 0.20);
+    --rose-gold: #8c3f4e;
+    --rose-gold-light: #ab5b6a;
+    --rose-gold-glow: rgba(140, 63, 78, 0.18);
     
-    --gold-primary: #b8860b;
-    --gold-light: #9a7617;
-    --gold-dark: #6e4e04;
-    --gold-glow: rgba(184, 134, 11, 0.25);
+    --gold-primary: #a67c00;
+    --gold-light: #806000;
+    --gold-dark: #574100;
+    --gold-glow: rgba(166, 124, 0, 0.22);
 
-    /* Cores de Texto e Contrastes Light */
-    --text-primary: #250912;
-    --text-secondary: #5e3240;
-    --text-muted: #8b5a69;
+    /* Cores de Texto e Contrastes Light - MÁXIMA LEGIBILIDADE */
+    --text-primary: #1e050c;
+    --text-secondary: #4a1c29;
+    --text-muted: #733c4c;
     
-    /* Superfícies de Vidro Claras */
-    --surface-glass: rgba(255, 245, 247, 0.82);
-    --surface-glass-header: rgba(255, 248, 250, 0.90);
-    --surface-glass-card: rgba(255, 248, 250, 0.92);
-    --border-glass: rgba(166, 88, 99, 0.18);
-    --border-glass-hover: rgba(184, 134, 11, 0.45);
+    /* Superfícies de Vidro Claras com Alta Opacidade */
+    --surface-glass: rgba(255, 255, 255, 0.94);
+    --surface-glass-header: rgba(255, 250, 252, 0.95);
+    --surface-glass-card: rgba(255, 255, 255, 0.95);
+    --surface-pill: rgba(250, 238, 242, 0.95);
+    --border-glass: rgba(140, 63, 78, 0.22);
+    --border-glass-hover: rgba(166, 124, 0, 0.5);
     
     /* Gradientes Assinatura Light */
-    --gradient-text-rose: linear-gradient(135deg, #581827 0%, #8b263e 50%, #c88691 100%);
-    --gradient-text-gold: linear-gradient(135deg, #b8860b 0%, #9a7617 50%, #6e4e04 100%);
-    --gradient-accent: linear-gradient(135deg, #8b263e 0%, #c88691 50%, #b8860b 100%);
-    --gradient-gold-btn: linear-gradient(135deg, #f3df95 0%, #d4af37 50%, #b8860b 100%);
+    --gradient-text-rose: linear-gradient(135deg, #4a0f1e 0%, #7a1d32 60%, #a67c00 100%);
+    --gradient-text-gold: linear-gradient(135deg, #7a1d32 0%, #a67c00 70%, #574100 100%);
+    --gradient-accent: linear-gradient(135deg, #7a1d32 0%, #8c3f4e 50%, #a67c00 100%);
+    --gradient-gold-btn: linear-gradient(135deg, #e5b83b 0%, #c49419 60%, #997108 100%);
     --gradient-timeline-line: linear-gradient(to bottom, var(--gold-primary), var(--rose-gold), var(--marsala-primary));
 
     /* Sombras Light */
-    --shadow-card: 0 15px 40px rgba(122, 35, 55, 0.08);
+    --shadow-card: 0 15px 40px rgba(74, 15, 30, 0.12);
 }

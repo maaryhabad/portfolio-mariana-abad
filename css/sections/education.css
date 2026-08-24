@@ -60,10 +60,6 @@
     box-shadow: 0 0 25px var(--gold-primary);
 }
 
-.timeline-year-tag {
-    display: none;
-}
-
 /* Cartão Bento da Linha do Tempo */
 .timeline-card {
     padding: 2rem 2.25rem;
@@ -71,6 +67,12 @@
     flex-direction: column;
     gap: 1rem;
     margin-left: 0.5rem;
+}
+
+[data-theme="light"] .timeline-card {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(140, 63, 78, 0.25);
+    box-shadow: 0 15px 35px rgba(74, 15, 30, 0.08);
 }
 
 .timeline-card:hover {
@@ -97,21 +99,33 @@
     letter-spacing: 0.05em;
 }
 
+[data-theme="light"] .timeline-badge-active {
+    background: rgba(166, 124, 0, 0.12);
+    border-color: rgba(166, 124, 0, 0.35);
+    color: var(--gold-primary);
+}
+
 .timeline-badge-completed {
     font-family: var(--font-mono);
     font-size: 0.72rem;
     padding: 0.35rem 0.85rem;
     border-radius: 9999px;
-    background: rgba(200, 134, 145, 0.15);
-    border: 1px solid var(--border-glass);
+    background: rgba(200, 134, 145, 0.14);
+    border: 1px solid rgba(200, 134, 145, 0.3);
     color: var(--rose-gold-light);
     font-weight: 600;
     letter-spacing: 0.05em;
 }
 
+[data-theme="light"] .timeline-badge-completed {
+    background: rgba(140, 63, 78, 0.1);
+    border-color: rgba(140, 63, 78, 0.25);
+    color: var(--marsala-primary);
+}
+
 .timeline-institution {
     font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
 }
 
@@ -120,6 +134,7 @@
     font-weight: 800;
     color: var(--text-primary);
     letter-spacing: -0.02em;
+    line-height: 1.25;
 }
 
 .timeline-card-desc {
@@ -132,13 +147,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    padding-top: 0.5rem;
+    margin-top: 0.35rem;
 }
 
-/* Grade Complementar (Idiomas & Certificações) */
+/* Grade Complementar: Idiomas e Certificações */
 .education-supplement-grid {
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
+    grid-template-columns: 1fr 1.35fr;
     gap: 1.75rem;
 }
 
@@ -149,41 +164,50 @@
     gap: 1.75rem;
 }
 
+[data-theme="light"] .education-card-box {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(140, 63, 78, 0.25);
+}
+
 .supplement-header {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-.supplement-icon-gold, .supplement-icon-rose {
+.supplement-icon-gold {
+    font-size: 1.75rem;
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.3);
     width: 48px;
     height: 48px;
-    border-radius: 14px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    flex-shrink: 0;
-}
-
-.supplement-icon-gold {
-    background: rgba(212, 175, 55, 0.15);
-    border: 1px solid rgba(212, 175, 55, 0.35);
 }
 
 .supplement-icon-rose {
+    font-size: 1.75rem;
     background: rgba(200, 134, 145, 0.15);
-    border: 1px solid rgba(200, 134, 145, 0.35);
+    border: 1px solid rgba(200, 134, 145, 0.3);
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .supplement-title {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: var(--text-primary);
+    letter-spacing: -0.02em;
 }
 
 .supplement-subtitle {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
 }
 
@@ -197,49 +221,59 @@
 .lang-row {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.45rem;
 }
 
 .lang-info {
     display: flex;
     justify-content: space-between;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
 }
 
 .lang-name {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-primary);
 }
 
 .lang-level {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--rose-gold-light);
+}
+
+[data-theme="light"] .lang-level {
+    color: var(--marsala-primary);
+    font-weight: 600;
 }
 
 .lang-bar-track {
     width: 100%;
     height: 6px;
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 9999px;
-    background: rgba(15, 5, 8, 0.8);
-    border: 1px solid var(--border-glass);
     overflow: hidden;
+}
+
+[data-theme="light"] .lang-bar-track {
+    background: rgba(140, 63, 78, 0.12);
 }
 
 .lang-bar-fill {
     height: 100%;
     border-radius: 9999px;
     background: var(--gradient-accent);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    transition: width 1s ease-in-out;
 }
 
 .fill-100 { width: 100%; }
 .fill-95 { width: 95%; }
 .fill-30 { width: 30%; }
 
-/* Grade de Certificações */
+/* Grid de Certificações */
 .certifications-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
@@ -249,15 +283,19 @@
     gap: 0.75rem;
     padding: 0.9rem;
     border-radius: 1rem;
-    background: rgba(15, 5, 8, 0.55);
+    background: var(--surface-pill);
     border: 1px solid var(--border-glass);
     transition: var(--transition-smooth);
+}
+
+[data-theme="light"] .cert-item {
+    background: #faf2f4;
+    border-color: rgba(140, 63, 78, 0.2);
 }
 
 .cert-item:hover {
     border-color: var(--border-glass-hover);
     transform: translateY(-2px);
-    background: rgba(26, 10, 16, 0.85);
 }
 
 .cert-badge-dot {
