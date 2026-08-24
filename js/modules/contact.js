@@ -2,9 +2,11 @@
  * ==============================================================================
  * MÓDULO: FORMULÁRIO DE CONTATO & VALIDAÇÃO COM REGEX (ContactModule)
  * Responsabilidade Única: Validação semântica de campos de entrada,
- * checagem de e-mail por expressão regular e controle de mensagens de erro.
+ * checagem de e-mail por expressão regular e disparo da animação cósmica.
  * ==============================================================================
  */
+
+import { Planet3DModule } from './planet3d.js';
 
 export const ContactModule = (() => {
     // Regex de Validação Estrita de E-mail
@@ -24,9 +26,6 @@ export const ContactModule = (() => {
 
     /**
      * Define o estado de erro de um campo
-     * @param {HTMLInputElement|HTMLTextAreaElement} inputElement 
-     * @param {HTMLElement} errorElement 
-     * @param {string} message 
      */
     const setFieldError = (inputElement, errorElement, message) => {
         if (!inputElement || !errorElement) return;
@@ -36,8 +35,6 @@ export const ContactModule = (() => {
 
     /**
      * Limpa o estado de erro de um campo
-     * @param {HTMLInputElement|HTMLTextAreaElement} inputElement 
-     * @param {HTMLElement} errorElement 
      */
     const clearFieldError = (inputElement, errorElement) => {
         if (!inputElement || !errorElement) return;
@@ -47,7 +44,6 @@ export const ContactModule = (() => {
 
     /**
      * Valida o campo de Nome
-     * @returns {boolean}
      */
     const validateName = () => {
         if (!nameInput) return true;
@@ -69,7 +65,6 @@ export const ContactModule = (() => {
 
     /**
      * Valida o campo de E-mail utilizando Regex
-     * @returns {boolean}
      */
     const validateEmail = () => {
         if (!emailInput) return true;
@@ -91,7 +86,6 @@ export const ContactModule = (() => {
 
     /**
      * Valida o campo de Assunto
-     * @returns {boolean}
      */
     const validateSubject = () => {
         if (!subjectInput) return true;
@@ -103,7 +97,7 @@ export const ContactModule = (() => {
         }
 
         if (value.length < 4) {
-            setFieldError(subjectInput, subjectError, 'O assunto deve ter no mínimo 4 caracteres.');
+            setFieldError(subjectInput, subjectError, 'O assunto deve ter pelo menos 4 caracteres.');
             return false;
         }
 
@@ -113,7 +107,6 @@ export const ContactModule = (() => {
 
     /**
      * Valida o campo de Mensagem
-     * @returns {boolean}
      */
     const validateMessage = () => {
         if (!messageInput) return true;
@@ -135,7 +128,6 @@ export const ContactModule = (() => {
 
     /**
      * Valida todos os campos do formulário
-     * @returns {boolean} Verdadeiro se todos os campos forem válidos
      */
     const validateForm = () => {
         const isNameValid = validateName();
@@ -159,7 +151,7 @@ export const ContactModule = (() => {
     };
 
     /**
-     * Configura ouvintes de eventos em tempo real
+     * Configura ouvintes de eventos em tempo real e submissão
      */
     const setupRealtimeValidation = () => {
         if (nameInput) nameInput.addEventListener('input', validateName);
@@ -173,15 +165,21 @@ export const ContactModule = (() => {
                 const isValid = validateForm();
                 
                 if (isValid) {
-                    // Dispara evento customizado para o modal de sucesso (Passo 10)
+                    const userData = {
+                        name: nameInput.value.trim(),
+                        email: emailInput.value.trim(),
+                        subject: subjectInput.value.trim(),
+                        message: messageInput.value.trim()
+                    };
+
+                    // Dispara a animação cósmica de singularidade 1:1 ao modelo.html
+                    Planet3DModule.triggerSingularityAnimation(userData);
+
+                    // Dispara evento customizado para outros módulos
                     const formSubmittedEvent = new CustomEvent('contactFormSubmitted', {
-                        detail: {
-                            name: nameInput.value.trim(),
-                            email: emailInput.value.trim()
-                        }
+                        detail: userData
                     });
                     document.dispatchEvent(formSubmittedEvent);
-                    resetForm();
                 }
             });
         }

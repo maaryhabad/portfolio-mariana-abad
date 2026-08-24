@@ -21,6 +21,9 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
 
+    <!-- GSAP para Animações Cinemáticas da Singularidade -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
     <!-- Folha de Estilos em CSS3 Puro -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -742,10 +745,10 @@
                 </p>
             </div>
 
-            <div class="contact-grid">
+            <div class="contact-grid" id="contactSectionWrapper">
                 
                 <!-- Coluna 1: Informações e Canais Diretos -->
-                <article class="bento-card contact-info-card">
+                <article class="bento-card contact-info-card" id="contactInfoCard">
                     <div class="contact-info-header">
                         <span class="aside-badge">CONEXÕES DIRETAS</span>
                         <h3 class="contact-info-title">Informações de Contato</h3>
@@ -796,7 +799,7 @@
                 </article>
 
                 <!-- Coluna 2: Formulário com Validação Customizada -->
-                <article class="bento-card contact-form-card">
+                <article class="bento-card contact-form-card" id="contactFormCard">
                     <div class="form-header">
                         <span class="aside-badge">FORMULÁRIO DE MENSAGEM</span>
                         <h3 class="form-title">Envie uma Mensagem</h3>
@@ -841,7 +844,7 @@
                             <span class="field-error-msg" id="messageError" role="alert"></span>
                         </div>
 
-                        <!-- Botão de Envio -->
+                        <!-- Botão de Envio (Aciona a Singularidade do modelo.html) -->
                         <button type="submit" class="btn-apple" id="submitContactBtn" style="align-self: flex-start;">
                             <span class="btn-icon">🚀</span>
                             <span>Enviar Mensagem</span>
@@ -873,7 +876,7 @@
     </div>
 
     <!-- Rodapé Semântico -->
-    <footer class="site-footer">
+    <footer class="site-footer" id="siteFooter">
         <div class="footer-container" style="max-width: var(--container-max-width); margin: 0 auto; padding: 3rem 1.5rem; text-align: center; border-top: 1px solid var(--border-glass); display: flex; flex-direction: column; align-items: center; gap: 1rem;">
             <div class="glass-pill" style="font-size: 0.72rem;">
                 <span class="status-dot"></span>

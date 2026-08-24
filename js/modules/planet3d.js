@@ -2,23 +2,24 @@
  * ==============================================================================
  * MÓDULO: NÚCLEO CELESTIAL 3D & DISCO DE ACREÇÃO (GARGANTUA)
  * Transcrição fiel 1:1 do motor de modelo.html com EffectComposer, UnrealBloomPass,
- * 25.000 partículas keplerianas, anel de fótons, aceleração orbital e transição
- * dinâmica de cores (Marsala Vermelho no Step 1, Dourado Quântico no Step 2, Rosé no Step 3).
+ * 25.000 partículas keplerianas, anel de fótons, aceleração orbital, transição
+ * dinâmica de cores e ANIMAÇÃO DE SINGULARIDADE / SUPERNOVA no clique de Envio!
  * ==============================================================================
  */
 
 export const Planet3DModule = (() => {
     let container, scene, camera, renderer, composer, bloomPass;
-    let coreGroup, accretionDisk, lensUpperArc, photonRing;
-    let bgStars, particleSystem, particleGeo;
+    let coreGroup, accretionDisk, lensUpperArc, photonRing, blackHole, corona;
+    let bgStars, particleSystem, particleGeo, particlesMaterial;
     let diskMat, haloMat, coronaMat;
     
     const particleCount = 25000;
     let particleAngles, particleDistances, particleSpeeds, particleYOff;
+    let particleVelocities, galaxyTargetPositions;
     let mouseX = 0, mouseY = 0;
     let targetMouseX = 0, targetMouseY = 0;
     
-    // Posições e escalas alvo (Scrollytelling 60fps)
+    // Posições e escalas alvo
     let targetPosX = 29, targetPosY = 0, targetPosZ = 8;
     let targetScale = 1.0;
     let targetSpeed = 0.0025;
@@ -26,6 +27,12 @@ export const Planet3DModule = (() => {
 
     // Cores alvo para interpolação suave (Lerp)
     let targetColorR = 0.95, targetColorG = 0.85, targetColorB = 0.55;
+
+    // Estados da Singularidade
+    let isSingularityTriggered = false;
+    let isImploding = false;
+    let isExploding = false;
+    let explosionPhase = 0;
 
     /**
      * Textura de ponto de estrela suave com halo
@@ -105,6 +112,7 @@ export const Planet3DModule = (() => {
      * Atualiza o Bloom com base no tema ativo (Dark / Light)
      */
     const updateThemeBloom = () => {
+        if (isSingularityTriggered) return;
         const isLight = document.documentElement.getAttribute('data-theme') === 'light';
         if (bloomPass) {
             bloomPass.strength = isLight ? 0.35 : 0.95;
@@ -113,7 +121,7 @@ export const Planet3DModule = (() => {
     };
 
     /**
-     * Inicialização da cena e pipeline de pós-processamento (UnrealBloomPass)
+     * Inicialização da cena e pipeline de pós-processamento
      */
     const initScene = () => {
         container = document.getElementById('webgl-container');
@@ -216,7 +224,7 @@ export const Planet3DModule = (() => {
         // 1. Horizonte de Eventos
         const bhGeo = new THREE.SphereGeometry(bhRadius, 64, 64);
         const bhMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
-        const blackHole = new THREE.Mesh(bhGeo, bhMat);
+        blackHole = new THREE.Mesh(bhGeo, bhMat);
         coreGroup.add(blackHole);
 
         // 2. Corona da Esfera de Fótons
@@ -228,7 +236,7 @@ export const Planet3DModule = (() => {
             blending: THREE.AdditiveBlending,
             side: THREE.BackSide
         });
-        const corona = new THREE.Mesh(coronaGeo, coronaMat);
+        corona = new THREE.Mesh(coronaGeo, coronaMat);
         coreGroup.add(corona);
 
         // 3. Disco Inclinado
@@ -288,6 +296,8 @@ export const Planet3DModule = (() => {
         particleDistances = new Float32Array(particleCount);
         particleSpeeds = new Float32Array(particleCount);
         particleYOff = new Float32Array(particleCount);
+        particleVelocities = new Float32Array(particleCount * 3);
+        galaxyTargetPositions = new Float32Array(particleCount * 3);
 
         for (let i = 0; i < particleCount; i++) {
             const i3 = i * 3;
@@ -321,7 +331,7 @@ export const Planet3DModule = (() => {
         particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
         particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
-        const particlesMaterial = new THREE.PointsMaterial({
+        particlesMaterial = new THREE.PointsMaterial({
             size: 0.65,
             vertexColors: true,
             map: starDotTexture,
@@ -359,14 +369,16 @@ export const Planet3DModule = (() => {
     };
 
     /**
-     * Atualiza as posições, cores e velocidade do buraco negro conforme as seções (Idêntico ao modelo.html)
+     * Atualiza as posições, cores e velocidade conforme as seções
      */
     const updateScrollytellingTargets = () => {
+        if (isSingularityTriggered) return;
+
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
         const progress = totalHeight > 0 ? scrollTop / totalHeight : 0;
 
-        // 1. Hero (#inicio): Dourado Imperial / Rosé suave
+        // 1. Hero
         if (progress < 0.12) {
             targetPosX = 29;
             targetPosY = 0;
@@ -375,34 +387,34 @@ export const Planet3DModule = (() => {
             targetSpeed = 0.0025;
             targetColorR = 0.95; targetColorG = 0.85; targetColorB = 0.55;
         }
-        // 2. Step 1 (#step-1): Vermelho Marsala Intenso (Idêntico a Imagem 3 do modelo.html)
+        // 2. Step 1 (Vermelho Marsala)
         else if (progress < 0.25) {
             targetPosX = 29;
             targetPosY = 0;
             targetPosZ = 8;
             targetScale = 1.0;
             targetSpeed = 0.006;
-            targetColorR = 1.0; targetColorG = 0.22; targetColorB = 0.32; // Marsala Red
+            targetColorR = 1.0; targetColorG = 0.22; targetColorB = 0.32;
         }
-        // 3. Step 2 (#step-2): Dourado Quântico & Aceleração Orbital (Idêntico a Imagem 4 do modelo.html)
+        // 3. Step 2 (Dourado Quântico & Aceleração)
         else if (progress < 0.38) {
             targetPosX = 29;
             targetPosY = 0;
             targetPosZ = 8;
             targetScale = 1.0;
-            targetSpeed = 0.022; // Core Acceleration!
-            targetColorR = 1.0; targetColorG = 0.75; targetColorB = 0.12; // Quantum Gold
+            targetSpeed = 0.022;
+            targetColorR = 1.0; targetColorG = 0.75; targetColorB = 0.12;
         }
-        // 4. Step 3 (#step-3): Cyber Rosé / Violeta
+        // 4. Step 3 (Cyber Rosé / Violeta)
         else if (progress < 0.50) {
             targetPosX = 28;
             targetPosY = 0;
             targetPosZ = 8;
             targetScale = 0.98;
             targetSpeed = 0.003;
-            targetColorR = 0.88; targetColorG = 0.45; targetColorB = 0.85; // Rosé Violet
+            targetColorR = 0.88; targetColorG = 0.45; targetColorB = 0.85;
         }
-        // 5. Pilares / Hobbies (Além do Código - Estilo Vero DNA do modelo.html): Recuo no canto superior esquerdo
+        // 5. Pilares Além do Código
         else if (progress < 0.65) {
             targetPosX = -25;
             targetPosY = 8;
@@ -411,7 +423,7 @@ export const Planet3DModule = (() => {
             targetSpeed = 0.002;
             targetColorR = 0.75; targetColorG = 0.55; targetColorB = 0.95;
         }
-        // 6. Formação Acadêmica & Timeline (Recua profundamente ao fundo z=-48)
+        // 6. Formação
         else if (progress < 0.78) {
             targetPosX = 24;
             targetPosY = 14;
@@ -420,7 +432,7 @@ export const Planet3DModule = (() => {
             targetSpeed = 0.002;
             targetColorR = 0.85; targetColorG = 0.65; targetColorB = 0.35;
         }
-        // 7. Portfólio & Contato (Fundo distante)
+        // 7. Portfólio & Contato
         else {
             targetPosX = -25;
             targetPosY = 10;
@@ -432,87 +444,339 @@ export const Planet3DModule = (() => {
     };
 
     /**
-     * Loop de animação contínua (60fps) com interpolação de cor e física kepleriana
+     * DISPARA A ANIMAÇÃO DA SINGULARIDADE (IDÊNTICA AO BOTÃO APROVAR FASE 1 DO MODELO.HTML)
+     * @param {Object} userData - { name, email }
+     */
+    const triggerSingularityAnimation = (userData = {}) => {
+        if (isSingularityTriggered || isImploding || isExploding) return;
+        isSingularityTriggered = true;
+
+        const userName = userData.name || 'Conexão';
+        const userEmail = userData.email || 'seu e-mail';
+
+        // 1. Congela o scroll
+        document.body.style.overflow = 'hidden';
+
+        const btn = document.getElementById('submitContactBtn');
+        if (btn) {
+            btn.innerHTML = `<span class="btn-icon">🌀</span> <span>Singularidade Ativada...</span>`;
+        }
+
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+
+        // 2. Gravitational Suction dos Elementos de Contato e Header
+        const targetElements = document.querySelectorAll('#contactFormCard, #contactInfoCard, .section-header-block, .site-header, #siteFooter');
+        
+        targetElements.forEach(el => {
+            if (typeof gsap !== 'undefined') {
+                const rect = el.getBoundingClientRect();
+                const dx = centerX - (rect.left + rect.width / 2);
+                const dy = centerY - (rect.top + rect.height / 2);
+                
+                gsap.to(el, {
+                    x: dx,
+                    y: dy,
+                    scale: 0.001,
+                    rotation: (Math.random() - 0.5) * 720,
+                    opacity: 0,
+                    filter: "blur(18px)",
+                    duration: 1.35,
+                    ease: "power3.in"
+                });
+            } else {
+                el.style.transition = 'all 1.2s ease-in';
+                el.style.transform = 'scale(0) rotate(360deg)';
+                el.style.opacity = '0';
+            }
+        });
+
+        // 3. O Buraco Negro trava suavemente no centro (0, 0, 0)
+        if (typeof gsap !== 'undefined') {
+            gsap.to(coreGroup.position, { x: 0, y: 0, z: 0, duration: 1.3, ease: "power3.inOut" });
+            gsap.to(coreGroup.rotation, { x: 0, y: 0, z: 0, duration: 1.3, ease: "power3.inOut" });
+            gsap.to(coreGroup.scale, { x: 1.0, y: 1.0, z: 1.0, duration: 1.3, ease: "power3.inOut" });
+        } else {
+            coreGroup.position.set(0, 0, 0);
+            coreGroup.scale.set(1, 1, 1);
+        }
+
+        // 4. Colapso da Singularidade (Implosão a 600ms)
+        setTimeout(() => {
+            isImploding = true;
+            targetSpeed = 0.5;
+
+            if (typeof gsap !== 'undefined') {
+                gsap.to(accretionDisk.scale, { x: 0, y: 0, z: 0, duration: 1.3, ease: "power4.in" });
+                gsap.to(lensUpperArc.scale, { x: 0, y: 0, z: 0, duration: 1.3, ease: "power4.in" });
+                gsap.to(corona.scale, { x: 0, y: 0, z: 0, duration: 1.3, ease: "power4.in" });
+                gsap.to(photonRing.scale, { x: 0, y: 0, z: 0, duration: 1.3, ease: "power4.in" });
+                gsap.to(blackHole.scale, { x: 0, y: 0, z: 0, duration: 1.5, ease: "power4.in" });
+            }
+
+            const colors = particleGeo.attributes.color.array;
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                colors[i] = 1.0; colors[i + 1] = 1.0; colors[i + 2] = 1.0;
+            }
+            particleGeo.attributes.color.needsUpdate = true;
+        }, 600);
+
+        // 5. Expansão Big Bang / Galáxia Espiral Frontal (Supernova a 2100ms)
+        setTimeout(() => {
+            isImploding = false;
+            isExploding = true;
+            explosionPhase = 1;
+
+            // Flash de Luz Ofuscante
+            const flash = document.createElement('div');
+            flash.style.position = 'fixed';
+            flash.style.inset = '0';
+            flash.style.backgroundColor = '#ffffff';
+            flash.style.zIndex = '9999';
+            flash.style.pointerEvents = 'none';
+            document.body.appendChild(flash);
+
+            if (typeof gsap !== 'undefined') {
+                gsap.to(flash, { opacity: 0, duration: 3.2, ease: "power2.out", onComplete: () => flash.remove() });
+                if (bloomPass) {
+                    bloomPass.strength = 3.6;
+                    gsap.to(bloomPass, { strength: 1.8, duration: 6, ease: "power2.out" });
+                }
+                if (particlesMaterial) {
+                    gsap.to(particlesMaterial, { size: 2.2, opacity: 1.0, duration: 4, ease: "power2.out" });
+                }
+            } else {
+                flash.style.transition = 'opacity 3s ease-out';
+                setTimeout(() => { flash.style.opacity = '0'; }, 50);
+            }
+
+            const positions = particleGeo.attributes.position.array;
+            const colors = particleGeo.attributes.color.array;
+
+            // 6-Arm Logarithmic Spiral Galaxy (Paleta Marsala, Rosé & Dourado)
+            const arms = 6;
+            const maxRadius = 155;
+
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                positions[i] = 0;
+                positions[i + 1] = 0;
+                positions[i + 2] = 0;
+
+                const blastSpeed = Math.random() * 3.5 + 1.0;
+                const blastTheta = Math.random() * Math.PI * 2;
+                const blastPhi = (Math.random() - 0.5) * Math.PI * 0.25;
+                particleVelocities[i] = Math.cos(blastTheta) * blastSpeed;
+                particleVelocities[i + 1] = Math.sin(blastTheta) * blastSpeed;
+                particleVelocities[i + 2] = Math.sin(blastPhi) * blastSpeed * 0.4;
+
+                const armIndex = (i / 3) % arms;
+                const radius = Math.pow(Math.random(), 1.25) * maxRadius;
+                const spin = radius * 0.16;
+                const angle = (armIndex * (Math.PI * 2 / arms)) + spin;
+
+                const scatter = (maxRadius - radius) * 0.10 + 1.2;
+                const randX = (Math.random() - 0.5) * scatter;
+                const randY = (Math.random() - 0.5) * scatter;
+                const randZ = (Math.random() - 0.5) * (scatter * 0.35);
+
+                galaxyTargetPositions[i] = Math.cos(angle) * radius + randX;
+                galaxyTargetPositions[i + 1] = Math.sin(angle) * radius + randY;
+                galaxyTargetPositions[i + 2] = randZ;
+
+                const color = new THREE.Color();
+                if (radius < 24) {
+                    color.setRGB(1.0, 0.95, 0.75); // Núcleo dourado brilhante
+                } else if (Math.random() > 0.45) {
+                    color.setRGB(0.85, 0.25, 0.42); // Marsala Cósmico
+                } else {
+                    color.setRGB(0.95, 0.75, 0.35); // Dourado Imperial
+                }
+
+                colors[i] = color.r;
+                colors[i + 1] = color.g;
+                colors[i + 2] = color.b;
+            }
+
+            particleGeo.attributes.color.needsUpdate = true;
+            particleGeo.attributes.position.needsUpdate = true;
+
+            setTimeout(() => {
+                explosionPhase = 2;
+            }, 800);
+
+            // Câmera recua suavemente para contemplar toda a galáxia
+            if (typeof gsap !== 'undefined') {
+                gsap.to(camera.position, { x: 0, y: 0, z: 135, duration: 8, ease: "power2.out" });
+                gsap.to(coreGroup.rotation, { x: 0, y: 0, z: 0, duration: 8, ease: "power2.out" });
+            }
+
+            // HUD Final Centralizado do Universo com dados da Mariana Abad
+            const finalHUD = document.createElement('div');
+            finalHUD.style.position = 'fixed';
+            finalHUD.style.top = '50%';
+            finalHUD.style.left = '50%';
+            finalHUD.style.transform = 'translate(-50%, -50%)';
+            finalHUD.style.zIndex = '10000';
+            finalHUD.style.textAlign = 'center';
+            finalHUD.style.opacity = '0';
+            finalHUD.style.width = '100%';
+            finalHUD.style.maxWidth = '900px';
+            finalHUD.style.padding = '0 24px';
+
+            finalHUD.innerHTML = `
+                <div class="glass-pill" style="margin-bottom: 1.5rem; border-color: rgba(243, 223, 149, 0.5); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);">
+                    <span class="status-dot"></span>
+                    <span>TRANSMISSÃO CONCLUÍDA • MARIANA ABAD</span>
+                </div>
+                <h1 class="huge-title text-gradient-gold" style="margin-bottom: 1.25rem; filter: drop-shadow(0 4px 20px rgba(0,0,0,1)) drop-shadow(0 0 50px rgba(212,175,55,0.7));">
+                    Conexão Estabelecida!
+                </h1>
+                <p style="font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 700; color: var(--rose-gold-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2.5rem; text-shadow: 0 3px 14px rgba(0,0,0,1);">
+                    Obrigada, ${userName}! Sua mensagem foi absorvida e gravada.
+                </p>
+                <p style="font-size: 1.05rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem auto; line-height: 1.6; text-shadow: 0 2px 10px rgba(0,0,0,1);">
+                    Entrarei em contato pelo e-mail <strong>${userEmail}</strong> em menos de 24 horas.
+                </p>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+                    <button type="button" class="btn-apple" onclick="window.location.reload();" style="cursor: pointer;">
+                        <span>🔄 Reiniciar Experiência</span>
+                    </button>
+                    <a href="assets/curriculo.pdf" download="Curriculo-Mariana-Abad.pdf" class="btn-glass-secondary">
+                        <span>📄 Baixar Currículo</span>
+                    </a>
+                </div>
+            `;
+            document.body.appendChild(finalHUD);
+
+            if (typeof gsap !== 'undefined') {
+                gsap.to(finalHUD, { opacity: 1, duration: 3.5, delay: 1.5, ease: "power3.out" });
+            } else {
+                finalHUD.style.transition = 'opacity 3s ease-out';
+                setTimeout(() => { finalHUD.style.opacity = '1'; }, 1500);
+            }
+
+        }, 2100);
+    };
+
+    /**
+     * Loop de animação contínua (60fps) com física de singularidade e galáxia
      */
     const animate = () => {
         requestAnimationFrame(animate);
 
         const elapsedTime = performance.now() * 0.001;
 
-        // Amortecimento do mouse
-        mouseX += (targetMouseX - mouseX) * 0.05;
-        mouseY += (targetMouseY - mouseY) * 0.05;
+        if (!isSingularityTriggered) {
+            // Amortecimento do mouse
+            mouseX += (targetMouseX - mouseX) * 0.05;
+            mouseY += (targetMouseY - mouseY) * 0.05;
 
-        // Interpolação suave de velocidade
-        currentSpeed += (targetSpeed - currentSpeed) * 0.05;
+            // Interpolação suave de velocidade
+            currentSpeed += (targetSpeed - currentSpeed) * 0.05;
 
-        // Interpolação suave de cor dos materiais (Lerp)
-        if (diskMat && haloMat && coronaMat) {
-            diskMat.color.r += (targetColorR - diskMat.color.r) * 0.05;
-            diskMat.color.g += (targetColorG - diskMat.color.g) * 0.05;
-            diskMat.color.b += (targetColorB - diskMat.color.b) * 0.05;
+            // Interpolação de cores
+            if (diskMat && haloMat && coronaMat) {
+                diskMat.color.r += (targetColorR - diskMat.color.r) * 0.05;
+                diskMat.color.g += (targetColorG - diskMat.color.g) * 0.05;
+                diskMat.color.b += (targetColorB - diskMat.color.b) * 0.05;
 
-            haloMat.color.r += (targetColorR - haloMat.color.r) * 0.05;
-            haloMat.color.g += (targetColorG - haloMat.color.g) * 0.05;
-            haloMat.color.b += (targetColorB - haloMat.color.b) * 0.05;
+                haloMat.color.r += (targetColorR - haloMat.color.r) * 0.05;
+                haloMat.color.g += (targetColorG - haloMat.color.g) * 0.05;
+                haloMat.color.b += (targetColorB - haloMat.color.b) * 0.05;
 
-            coronaMat.color.r += (targetColorR - coronaMat.color.r) * 0.05;
-            coronaMat.color.g += (targetColorG - coronaMat.color.g) * 0.05;
-            coronaMat.color.b += (targetColorB - coronaMat.color.b) * 0.05;
-        }
-
-        // Rotação dos anéis com a velocidade variável
-        if (accretionDisk) accretionDisk.rotation.z -= currentSpeed * 3.5;
-        if (lensUpperArc) lensUpperArc.rotation.z += currentSpeed * 1.5;
-        if (photonRing) photonRing.rotation.z -= currentSpeed * 2.0;
-
-        // Parallax das estrelas ao fundo
-        if (bgStars && coreGroup) {
-            const targetStarPosX = -camera.position.x * 0.15 - coreGroup.position.x * 0.05;
-            const targetStarPosY = -camera.position.y * 0.15 - coreGroup.position.y * 0.05;
-            const targetStarPosZ = -camera.position.z * 0.08;
-
-            bgStars.position.x += (targetStarPosX - bgStars.position.x) * 0.05;
-            bgStars.position.y += (targetStarPosY - bgStars.position.y) * 0.05;
-            bgStars.position.z += (targetStarPosZ - bgStars.position.z) * 0.05;
-
-            bgStars.rotation.y = elapsedTime * 0.0003;
-            bgStars.rotation.x = Math.sin(elapsedTime * 0.15) * 0.01;
-        }
-
-        // Física das 25.000 partículas
-        if (particleGeo && particleAngles) {
-            const pos = particleGeo.attributes.position.array;
-            for (let i = 0; i < particleCount; i++) {
-                const i3 = i * 3;
-                particleAngles[i] -= particleSpeeds[i] * currentSpeed * 20;
-                const r = particleDistances[i];
-                const angle = particleAngles[i];
-
-                pos[i3] = r * Math.cos(angle);
-                pos[i3 + 1] = particleYOff[i] + Math.sin(elapsedTime * 2 + r) * 0.2;
-                pos[i3 + 2] = r * Math.sin(angle);
+                coronaMat.color.r += (targetColorR - coronaMat.color.r) * 0.05;
+                coronaMat.color.g += (targetColorG - coronaMat.color.g) * 0.05;
+                coronaMat.color.b += (targetColorB - coronaMat.color.b) * 0.05;
             }
-            particleGeo.attributes.position.needsUpdate = true;
-        }
 
-        // Movimentação suave do Core 3D
-        if (coreGroup) {
-            const effectiveTargetX = targetPosX + mouseX * 2;
-            const effectiveTargetY = targetPosY - mouseY * 2;
+            // Rotação dos anéis
+            if (accretionDisk) accretionDisk.rotation.z -= currentSpeed * 3.5;
+            if (lensUpperArc) lensUpperArc.rotation.z += currentSpeed * 1.5;
+            if (photonRing) photonRing.rotation.z -= currentSpeed * 2.0;
 
-            coreGroup.position.x += (effectiveTargetX - coreGroup.position.x) * 0.04;
-            coreGroup.position.y += (effectiveTargetY - coreGroup.position.y) * 0.04;
-            coreGroup.position.z += (targetPosZ - coreGroup.position.z) * 0.04;
+            // Parallax das estrelas ao fundo
+            if (bgStars && coreGroup) {
+                const targetStarPosX = -camera.position.x * 0.15 - coreGroup.position.x * 0.05;
+                const targetStarPosY = -camera.position.y * 0.15 - coreGroup.position.y * 0.05;
+                const targetStarPosZ = -camera.position.z * 0.08;
 
-            const curScale = coreGroup.scale.x;
-            const nextScale = curScale + (targetScale - curScale) * 0.04;
-            coreGroup.scale.set(nextScale, nextScale, nextScale);
+                bgStars.position.x += (targetStarPosX - bgStars.position.x) * 0.05;
+                bgStars.position.y += (targetStarPosY - bgStars.position.y) * 0.05;
+                bgStars.position.z += (targetStarPosZ - bgStars.position.z) * 0.05;
 
-            // Oscilação harmônica suave
-            coreGroup.rotation.x = Math.sin(elapsedTime * 0.25) * 0.035 + (mouseY * 0.05);
-            coreGroup.rotation.y = Math.cos(elapsedTime * 0.2) * 0.035 + (mouseX * 0.05);
-            coreGroup.rotation.z = Math.sin(elapsedTime * 0.15) * 0.02;
+                bgStars.rotation.y = elapsedTime * 0.0003;
+                bgStars.rotation.x = Math.sin(elapsedTime * 0.15) * 0.01;
+            }
+
+            // Física das 25.000 partículas keplerianas
+            if (particleGeo && particleAngles) {
+                const pos = particleGeo.attributes.position.array;
+                for (let i = 0; i < particleCount; i++) {
+                    const i3 = i * 3;
+                    particleAngles[i] -= particleSpeeds[i] * currentSpeed * 20;
+                    const r = particleDistances[i];
+                    const angle = particleAngles[i];
+
+                    pos[i3] = r * Math.cos(angle);
+                    pos[i3 + 1] = particleYOff[i] + Math.sin(elapsedTime * 2 + r) * 0.2;
+                    pos[i3 + 2] = r * Math.sin(angle);
+                }
+                particleGeo.attributes.position.needsUpdate = true;
+            }
+
+            // Movimentação suave do Core 3D
+            if (coreGroup) {
+                const effectiveTargetX = targetPosX + mouseX * 2;
+                const effectiveTargetY = targetPosY - mouseY * 2;
+
+                coreGroup.position.x += (effectiveTargetX - coreGroup.position.x) * 0.04;
+                coreGroup.position.y += (effectiveTargetY - coreGroup.position.y) * 0.04;
+                coreGroup.position.z += (targetPosZ - coreGroup.position.z) * 0.04;
+
+                const curScale = coreGroup.scale.x;
+                const nextScale = curScale + (targetScale - curScale) * 0.04;
+                coreGroup.scale.set(nextScale, nextScale, nextScale);
+
+                coreGroup.rotation.x = Math.sin(elapsedTime * 0.25) * 0.035 + (mouseY * 0.05);
+                coreGroup.rotation.y = Math.cos(elapsedTime * 0.2) * 0.035 + (mouseX * 0.05);
+                coreGroup.rotation.z = Math.sin(elapsedTime * 0.15) * 0.02;
+            }
+        } 
+        // ----------------------------------------------------
+        // FÍSICA DA SINGULARIDADE / SUPERNOVA (MODELO.HTML)
+        // ----------------------------------------------------
+        else {
+            if (isImploding && particleGeo) {
+                const pos = particleGeo.attributes.position.array;
+                for (let i = 0; i < particleCount * 3; i += 3) {
+                    pos[i] *= 0.88;
+                    pos[i + 1] *= 0.88;
+                    pos[i + 2] *= 0.88;
+                }
+                particleGeo.attributes.position.needsUpdate = true;
+            } else if (isExploding && particleGeo) {
+                const pos = particleGeo.attributes.position.array;
+                if (explosionPhase === 1) {
+                    for (let i = 0; i < particleCount * 3; i += 3) {
+                        pos[i] += particleVelocities[i];
+                        pos[i + 1] += particleVelocities[i + 1];
+                        pos[i + 2] += particleVelocities[i + 2];
+                        particleVelocities[i] *= 0.94;
+                        particleVelocities[i + 1] *= 0.94;
+                        particleVelocities[i + 2] *= 0.94;
+                    }
+                } else if (explosionPhase === 2) {
+                    for (let i = 0; i < particleCount * 3; i += 3) {
+                        pos[i] += (galaxyTargetPositions[i] - pos[i]) * 0.035;
+                        pos[i + 1] += (galaxyTargetPositions[i + 1] - pos[i + 1]) * 0.035;
+                        pos[i + 2] += (galaxyTargetPositions[i + 2] - pos[i + 2]) * 0.035;
+                    }
+                    if (particleSystem) {
+                        particleSystem.rotation.z += 0.0008; // Rotação da galáxia espiral
+                    }
+                }
+                particleGeo.attributes.position.needsUpdate = true;
+            }
         }
 
         if (composer) {
@@ -538,6 +802,7 @@ export const Planet3DModule = (() => {
     return {
         init,
         updateScrollytellingTargets,
-        updateThemeBloom
+        updateThemeBloom,
+        triggerSingularityAnimation
     };
 })();
