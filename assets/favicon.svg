@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a0b16"/>
+      <stop offset="100%" stop-color="#0a0305"/>
+    </radialGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3df95"/>
+      <stop offset="45%" stop-color="#e8b4bc"/>
+      <stop offset="100%" stop-color="#8b263e"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Fundo Circular e Borda Gradiente Marsala/Gold -->
+  <circle cx="256" cy="256" r="236" fill="url(#bgGrad)" stroke="url(#ringGrad)" stroke-width="22"/>
+  
+  <!-- Tipografia MA em Dourado Brilhante -->
+  <text x="256" y="320" 
+        font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" 
+        font-size="200" 
+        font-weight="900" 
+        letter-spacing="-8" 
+        fill="#f3df95" 
+        text-anchor="middle">MA</text>
+</svg>
